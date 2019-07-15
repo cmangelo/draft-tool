@@ -12,6 +12,7 @@ import { Position } from '../../shared/position.enum';
 export class PositionTabComponent implements OnInit {
   @Input() position: Position;
   tiers: Array<Tier>;
+  positions = Position;
 
   constructor(private playerService: PlayersService) { }
 

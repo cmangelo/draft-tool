@@ -1,1 +1,4 @@
-
+<div class="tiers">
+  <app-tier-card *ngFor="let tier of tiers" [players]="tier.players" [tier]="tier.tier"
+    [hideTierNumber]="position === positions.FLEX"></app-tier-card>
+</div>

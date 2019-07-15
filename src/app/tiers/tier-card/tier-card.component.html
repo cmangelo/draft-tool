@@ -1,1 +1,29 @@
-<p>tier-card works!</p>
+<h3 *ngIf="!hideTierNumber">Tier {{tier}}</h3>
+<div class="tier">
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th width="25%">Name</th>
+        <th>Team</th>
+        <th>BYE</th>
+        <th>Points</th>
+        <th>Risk</th>
+        <th>ADP</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players">
+        <td>{{player.rank}}</td>
+        <td width="25%">{{player.name}}</td>
+        <td>{{player.team}}</td>
+        <td>{{player.bye}}</td>
+        <td>{{player.points}}</td>
+        <td>{{player.risk}}</td>
+        <td>{{player.adp}}</td>
+        <td width="10%"><button class="btn btn-primary">Draft</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

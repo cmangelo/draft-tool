@@ -73,7 +73,7 @@ export class PlayersService {
 
     private sortArray(arr, property) {
         return arr.sort((a, b) => {
-            return a[property] < b[property] ? 1 : -1;
+            return a[property] < b[property] ? -1 : 1;
         });
     }
 }
