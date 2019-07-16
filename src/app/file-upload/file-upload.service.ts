@@ -1,14 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+
+import { Position } from "../shared/position.enum";
+import { ApiHelperService } from "../shared/services/api-helper.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FileUploadService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private api: ApiHelperService) { }
 
-    uploadFile(formData: FormData) {
-        return this.http.post('http://localhost:3000/players/upload', formData, { responseType: 'blob' });
+    uploadFile(position: Position, formData: FormData) {
+        return this.api.post('positions/' + position, formData); //, { responseType: 'blob' }
     }
 }
