@@ -41,6 +41,10 @@ h3 {
         font-weight: 350;
         border-bottom: 1px solid #e0e0e0;
 
+        &.taken {
+          text-decoration: line-through;
+        }
+
         &:last-of-type {
           border-bottom: none;
         }
@@ -64,6 +68,12 @@ h3 {
 
           .btn.btn-primary {
             padding: 3px 10px;
+
+            &:disabled {
+              background-color: #f1f1f1;
+              border-color: #f1f1f1;
+              color: #acacac
+            }
           }
         }
       }
