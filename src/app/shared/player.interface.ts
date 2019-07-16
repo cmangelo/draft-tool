@@ -8,4 +8,5 @@ export interface Player {
     adp: number;
     tier: number;
     notes: string;
+    taken: boolean;
 }
