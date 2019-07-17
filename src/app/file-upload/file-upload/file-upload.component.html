@@ -1,23 +1,32 @@
-<div class="center">
-  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
-    (onFileLeave)="fileLeave($event)">
-    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-      Optional custom content that replaces the the entire default content.
-      <button type="button" (click)="openFileSelector()">Browse Files</button>
-    </ng-template>
-  </ngx-file-drop>
-  <div class="upload-table">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody class="upload-name-style">
-        <tr *ngFor="let item of files; let i=index">
-          <td><strong>{{ item.relativePath }}</strong></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="header">
+  <h1>Upload CSV Tier Rankings</h1>
+
+  <div class="radios">
+    <input type="radio" id="r1" [value]="0" [(ngModel)]="position" checked>
+    <label for="r1">QB</label>
+    <input type="radio" id="r2" value="1" [(ngModel)]="position">
+    <label for="r2">RB</label>
+    <input type="radio" id="r3" value="2" [(ngModel)]="position">
+    <label for="r3">WR</label>
+    <input type="radio" id="r4" value="3" [(ngModel)]="position">
+    <label for="r4">TE</label>
+    <input type="radio" id="r5" value="4" [(ngModel)]="position">
+    <label for="r5">FLEX</label>
   </div>
 </div>
+
+<div class="dropzone" [ngClass]="{'file-over': isFileOver}">
+  <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event); isFileOver = false"
+    (onFileOver)="isFileOver = true" (onFileLeave)="isFileOver = false">
+  </ngx-file-drop>
+</div>
+
+<div class="message" *ngIf="files && files.length !== 0; else noFiles">
+  You just uploaded the {{positions[lastPosition]}} file!
+</div>
+
+<ng-template #noFiles>
+  <div class="message">
+    Files dropped above will be immediately uploaded
+  </div>
+</ng-template>
