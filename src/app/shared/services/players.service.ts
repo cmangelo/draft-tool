@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { Player } from '../player.interface';
-import { Position } from '../position.enum';
-import { Tier } from '../tier.interface';
+import { Position } from '../enums/position.enum';
+import { Player } from '../models/player.interface';
+import { Tier } from '../models/tier.interface';
 import { ApiHelperService } from './api-helper.service';
 
 @Injectable({

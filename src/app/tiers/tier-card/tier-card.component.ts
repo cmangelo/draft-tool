@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Player } from '../../shared/player.interface';
+import { Player } from '../../shared/models/player.interface';
 
 @Component({
   selector: 'app-tier-card',

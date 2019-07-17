@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Player } from '../../shared/player.interface';
-import { Position } from '../../shared/position.enum';
+import { Position } from '../../shared/enums/position.enum';
+import { Player } from '../../shared/models/player.interface';
 
 @Component({
   selector: 'app-tiers',

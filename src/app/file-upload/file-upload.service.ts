@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Position } from '../shared/position.enum';
+import { Position } from '../shared/enums/position.enum';
 import { ApiHelperService } from '../shared/services/api-helper.service';
 
 @Injectable({

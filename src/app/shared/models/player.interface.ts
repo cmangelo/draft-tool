@@ -1,4 +1,4 @@
-import { Position } from './position.enum';
+import { Position } from '../enums/position.enum';
 
 export interface Player {
     _id: string;

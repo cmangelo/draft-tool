@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FileSystemDirectoryEntry, FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 
-import { Position } from '../../shared/position.enum';
+import { Position } from '../../shared/enums/position.enum';
 import { FileUploadService } from '../file-upload.service';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayersService } from 'src/app/shared/services/players.service';
-import { Tier } from 'src/app/shared/tier.interface';
 
-import { Position } from '../../shared/position.enum';
+import { Position } from '../../shared/enums/position.enum';
+import { Tier } from '../../shared/models/tier.interface';
 
 @Component({
   selector: 'app-position-tab',
