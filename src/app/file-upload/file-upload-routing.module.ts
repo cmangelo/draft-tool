@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { FileUploadComponent } from "./file-upload/file-upload.component";
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
   {
-    path: 'fileUpload',
+    path: 'file-upload',
     component: FileUploadComponent
   }
 ];

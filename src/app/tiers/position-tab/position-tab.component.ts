@@ -19,8 +19,8 @@ export class PositionTabComponent implements OnInit {
   ngOnInit() {
     this.playerService.getPlayerByPosition(this.position).subscribe(data => {
       this.tiers = data;
-      console.log(this.tiers);
     });
+    // this.playerService.updatePlayer('5d2e9822d5477953c4fef11a', { owner: 'Cma', draftedRound: 3, draftedPick: 4 }).subscribe();
   }
 
 }

@@ -1,6 +1,6 @@
 import { Player } from './player.interface';
 
 export interface Tier {
-    tier: number;
+    tierNumber: number;
     players: Array<Player>;
 }
