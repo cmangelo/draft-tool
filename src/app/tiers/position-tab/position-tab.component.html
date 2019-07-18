@@ -1,4 +1,4 @@
 <div class="tiers">
   <app-tier-card *ngFor="let tier of tiers" [players]="tier.players" [tier]="tier.tierNumber"
-    [hideTierNumber]="position === positions.FLEX"></app-tier-card>
+    [hideTierNumber]="position === positions.FLEX" [startingAtRank]="tier.startingAtRank"></app-tier-card>
 </div>

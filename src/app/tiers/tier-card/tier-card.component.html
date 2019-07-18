@@ -14,8 +14,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let player of players" [ngClass]="{'taken': player.taken}">
-        <td>{{player.rank}}</td>
+      <tr *ngFor="let player of players; let i = index" [ngClass]="{'taken': player.taken}">
+        <td>{{startingAtRank + i}}</td>
         <td width="25%">{{player.name}}</td>
         <td>{{player.team}}</td>
         <td>{{player.bye}}</td>

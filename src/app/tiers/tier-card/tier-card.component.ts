@@ -10,6 +10,7 @@ import { Player } from '../../shared/models/player.interface';
 export class TierCardComponent implements OnInit {
   @Input() players: Array<Player>;
   @Input() tier: number;
+  @Input() startingAtRank: number;
   @Input() hideTierNumber: boolean;
 
   constructor() { }
