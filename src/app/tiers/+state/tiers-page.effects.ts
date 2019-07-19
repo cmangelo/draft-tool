@@ -2,23 +2,25 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { normalize, schema } from 'normalizr';
 import { map, switchMap } from 'rxjs/operators';
+import { PlayerActions } from 'src/app/+state/entities/player/player.actions';
 
-import * as playerActions from '../../+state/entities/player/player.actions';
+import { GroupActions } from '../../+state/entities/group/group.actions';
+import { TierActions } from '../../+state/entities/tier/tier.actions';
 import { PlayersService } from '../../shared/services/players.service';
-import { TiersActions, TiersActionsType } from './tiers.actions';
+import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TiersEffects {
 
-    constructor(private actions: Actions<TiersActionsType>,
+    constructor(private actions: Actions<TiersPageActionsType>,
         private service: PlayersService) { }
 
     @Effect()
     getPlayersForPosition$ = this.actions
         .pipe(
-            ofType(TiersActions.GetPlayersForPosition.type),
+            ofType(TiersPageActions.GetPlayersForPosition.type),
             switchMap(({ position }) => this.service.getPlayerByPosition(position)
                 .pipe(
                     map(res => {
@@ -30,12 +32,12 @@ export class TiersEffects {
                                 idAttribute: '_id'
                             });
                         const normalizedData = normalize(res, [tier]);
-                        console.log(JSON.stringify(normalizedData.entities.players));
                         return normalizedData;
                     }),
                     switchMap(normalized => [
-                        playerActions.addPlayers({ players: normalized.entities.players }),
-                        TiersActions.AddTier({ tiers: normalized.entities.tiers, ids: normalized.result })
+                        PlayerActions.AddPlayers({ players: normalized.entities.players }),
+                        TierActions.AddTier({ tiers: normalized.entities.tiers, ids: normalized.result }),
+                        GroupActions.AddGroup({ group: { position, tiers: normalized.result } })
                     ])
                 )
             )

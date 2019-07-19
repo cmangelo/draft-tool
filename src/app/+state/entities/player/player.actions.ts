@@ -1,12 +1,21 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 
 import { Player } from './player.model';
 
-export const addPlayers = createAction(
+export const AddPlayers = createAction(
   '[Player/API] Add Players',
   props<{ players: { [_id: string]: Player } }>()
 );
 
-export const clearPlayers = createAction(
+export const ClearPlayers = createAction(
   '[Player/API] Clear Players'
 );
+
+export const PlayerActions = {
+  AddPlayers,
+  ClearPlayers
+}
+
+const ActionsUnion = union(PlayerActions);
+
+export type PlayerActionsType = typeof ActionsUnion;

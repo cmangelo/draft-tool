@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 
-import * as tierState from './+state/tiers.reducer';
+import * as tierState from './+state/tiers-page.reducer';
 import { PositionTabComponent } from './position-tab/position-tab.component';
 import { TierCardComponent } from './tier-card/tier-card.component';
 import { TiersRoutingModule } from './tiers-routing.module';

@@ -4,27 +4,27 @@ import * as PlayerActions from './player.actions';
 import { Player } from './player.model';
 
 export interface State {
-  players: { [_id: string]: Player };
+  entities: { [_id: string]: Player };
 }
 
 export const initialState: State = {
-  players: {}
+  entities: {}
 }
 
 const playerReducer = createReducer(
   initialState,
-  on(PlayerActions.addPlayers,
+  on(PlayerActions.AddPlayers,
     (state, action) => {
       return {
         ...state,
-        players: {
-          ...state.players,
+        entities: {
+          ...state.entities,
           ...action.players
         }
       }
     }
   ),
-  on(PlayerActions.clearPlayers, () => initialState)
+  on(PlayerActions.ClearPlayers, () => initialState)
 );
 
 export function reducer(state: State | undefined, action: Action) {

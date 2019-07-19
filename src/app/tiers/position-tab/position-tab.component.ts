@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlayersService } from 'src/app/shared/services/players.service';
-import { TiersFacade } from 'src/app/tiers/+state/tiers.facade';
+import { TiersFacade } from 'src/app/tiers/+state/tiers-page.facade';
 
 import { Position } from '../../shared/enums/position.enum';
 import { Tier } from '../../shared/models/tier.interface';
@@ -22,8 +22,8 @@ export class PositionTabComponent implements OnInit {
     //   this.tiers = data;
     // });
     // this.playerService.updatePlayer('5d2e9822d5477953c4fef11a', { owner: 'Cma', draftedRound: 3, draftedPick: 4 }).subscribe();
-    // this.facade.getPlayersForPosition(Position.QB);
-    this.facade.getPlayersForAllPositions();
+    this.facade.getPlayersForPosition(this.position);
+    // this.facade.getPlayersForAllPositions();
   }
 
 }
