@@ -1,10 +1,10 @@
 import { createAction, props, union } from '@ngrx/store';
 
-import { Player } from './player.model';
+import { PlayerModel } from './player.model';
 
 export const AddPlayers = createAction(
   '[Player/API] Add Players',
-  props<{ players: { [_id: string]: Player } }>()
+  props<{ players: { [_id: string]: PlayerModel } }>()
 );
 
 export const ClearPlayers = createAction(

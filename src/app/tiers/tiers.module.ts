@@ -8,6 +8,8 @@ import { PositionTabComponent } from './position-tab/position-tab.component';
 import { TierCardComponent } from './tier-card/tier-card.component';
 import { TiersRoutingModule } from './tiers-routing.module';
 import { TiersComponent } from './tiers/tiers.component';
+import { TiersEffects } from './+state/tiers-page.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [TiersComponent, TierCardComponent, PositionTabComponent],
@@ -15,6 +17,7 @@ import { TiersComponent } from './tiers/tiers.component';
     CommonModule,
     TiersRoutingModule,
     NgbTabsetModule,
+    EffectsModule.forFeature([TiersEffects]),
     StoreModule.forFeature('tiers-page', tierState.reducer)
   ],
   exports: [TiersComponent, TierCardComponent]

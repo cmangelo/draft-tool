@@ -1,10 +1,12 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, createFeatureSelector } from '@ngrx/store';
 
 import { GroupActions, GroupActionsType } from './group.actions';
 import { GroupModel } from './group.model';
 
+export type GroupEntityType = { [_id: string]: GroupModel }
+
 export interface State {
-    entities: { [key: number]: GroupModel };
+    entities: GroupEntityType
 }
 
 export const initialState: State = {
@@ -14,7 +16,6 @@ export const initialState: State = {
 const groupReducer = createReducer(
     initialState,
     on(GroupActions.AddGroup, (state, action) => {
-        const id = action.group.position;
         return { ...state, entities: { ...state.entities, [action.group.position]: action.group } }
     })
 );
@@ -22,3 +23,5 @@ const groupReducer = createReducer(
 export function reducer(state: State | undefined, action: GroupActionsType) {
     return groupReducer(state, action);
 }
+
+export const groupEntitySelector = createFeatureSelector<State>('groups');

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Position } from '../../shared/enums/position.enum';
-import { Player } from '../../shared/models/player.interface';
+import { PlayerModel } from '../../+state/entities/player/player.model';
 
 @Component({
   selector: 'app-tiers',
@@ -10,7 +10,7 @@ import { Player } from '../../shared/models/player.interface';
 })
 export class TiersComponent implements OnInit {
   positions = Position;
-  players: Array<Player>;
+  players: Array<PlayerModel>;
 
   constructor() { }
 

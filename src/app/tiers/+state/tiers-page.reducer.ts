@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, createFeatureSelector } from '@ngrx/store';
 
 import { Position } from '../../shared/enums/position.enum';
 import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
@@ -25,3 +25,5 @@ const tiersReducer = createReducer(
 export function reducer(state: Tiers | undefined, action: TiersPageActionsType) {
     return tiersReducer(state, action);
 }
+
+export const tiersPageSelector = createFeatureSelector<Tiers>('tiers-page');

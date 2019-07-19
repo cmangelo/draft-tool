@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Position } from 'src/app/shared/enums/position.enum';
 
 import { TiersPageActions } from './tiers-page.actions';
 import { TiersState } from './tiers-page.reducer';
+import { getPlayersForActiveGroup, getActiveTab } from './tiers-page.selectors';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TiersFacade {
+    currentGroupPlayers$ = this.store.pipe(select(getPlayersForActiveGroup));
 
     constructor(private store: Store<TiersState>) { }
 

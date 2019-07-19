@@ -1,6 +1,6 @@
 import { Position } from '../../../shared/enums/position.enum';
 
-export interface Player {
+export interface PlayerModel {
   _id: string;
   group: Position;
   name: string;
