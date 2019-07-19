@@ -4,7 +4,7 @@ import { Player } from './player.model';
 
 export const addPlayers = createAction(
   '[Player/API] Add Players',
-  props<{ players: Player[] }>()
+  props<{ players: { [_id: string]: Player } }>()
 );
 
 export const clearPlayers = createAction(
