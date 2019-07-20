@@ -1,17 +1,19 @@
 import { createSelector } from '@ngrx/store';
+import { TierModel } from 'src/app/+state/entities/tier/tier.model';
 
-import { groupEntitySelector, GroupEntityType } from '../../+state/entities/group/group.reducer';
-import { playerEntitySelector, PlayerEntityType } from '../../+state/entities/player/player.reducer';
-import { tierEntitySelector, TierEntityType } from '../../+state/entities/tier/tier.reducer';
-import { tiersPageSelector } from './tiers-page.reducer';
-import { Position } from '../../shared/enums/position.enum';
 import { GroupModel } from '../../+state/entities/group/group.model';
+import { GroupEntityType } from '../../+state/entities/group/group.reducer';
+import { PlayerEntityType } from '../../+state/entities/player/player.reducer';
+import { TierEntityType } from '../../+state/entities/tier/tier.reducer';
+import { entitiesSelector } from '../../+state/reducers';
+import { Position } from '../../shared/enums/position.enum';
+import { tiersPageSelector } from './tiers-page.reducer';
 
-const getGroups = createSelector(groupEntitySelector, state => state.entities);
+const getGroups = createSelector(entitiesSelector, state => state.groups.entities);
 
-const getTiers = createSelector(tierEntitySelector, state => state.entities);
+const getTiers = createSelector(entitiesSelector, state => state.tiers.entities);
 
-const getPlayers = createSelector(playerEntitySelector, state => state.entities);
+const getPlayers = createSelector(entitiesSelector, state => state.players.entities);
 
 export const getActiveTab = createSelector(tiersPageSelector, state => state.activeTab);
 
@@ -26,11 +28,14 @@ export const getPlayersForActiveGroup = createSelector(
 	getTiers,
 	getPlayers,
 	(group: GroupModel, tiers: TierEntityType, players: PlayerEntityType) => {
-		console.log(group, tiers, players)
-		let groupTiers = Object.keys(group.tiers).map(key => tiers[key]);
-		let tierPlayers = groupTiers.map(tier => Object.keys(groupTiers).map(key => players[key]));
-		// group.tiers = groupTiers;
-		console.log(groupTiers, tierPlayers)
-		return groupTiers; 
+		if (!group || !tiers || !players) return;
+		let gt = group.tiers as Array<string>;
+		let groupTiers = gt.map(key => tiers[key]);
+		let tierPlayers = groupTiers.map((t: TierModel) => {
+			let tp = t.players.map(key => players[key]);
+			return { ...t, players: tp }
+		});
+		console.log(tierPlayers)
+		return tierPlayers;
 	}
 )

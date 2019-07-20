@@ -3,12 +3,8 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { TiersEffects } from '../tiers/+state/tiers-page.effects';
-import * as group from './entities/group/group.reducer';
-import * as player from './entities/player/player.reducer';
-import * as team from './entities/team/team.reducer';
-import * as tier from './entities/tier/tier.reducer';
-import * as root from './reducers/index';
+import { TierEffects } from './features/tier.effects';
+import * as root from './reducers';
 
 @NgModule({
   declarations: [],
@@ -18,7 +14,9 @@ import * as root from './reducers/index';
     // StoreModule.forFeature('teams', team.reducer),
     // StoreModule.forFeature('groups', group.reducer),
     // StoreModule.forFeature('tiers', tier.reducer)
-    StoreModule.forRoot(root.reducers, { initialState: root.initialState })
+    // StoreModule.forRoot(rootreducers, { initialState: root.initialState }),
+    StoreModule.forFeature('entities', root.reducers),
+    EffectsModule.forFeature([TierEffects])
   ]
 })
 export class StateModule { }

@@ -1,4 +1,4 @@
-import { Action, createReducer, on, createFeatureSelector } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as PlayerActions from './player.actions';
 import { PlayerModel } from './player.model';
@@ -33,4 +33,6 @@ export function reducer(state: State | undefined, action: Action) {
   return playerReducer(state, action);
 }
 
-export const playerEntitySelector = createFeatureSelector<State>('players');
+// export const playerEntitySelector = createFeatureSelector<State>('players');
+
+export const getPlayers = (state: State) => state.entities;

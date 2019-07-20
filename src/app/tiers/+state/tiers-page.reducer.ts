@@ -1,4 +1,4 @@
-import { createReducer, on, createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createReducer, on } from '@ngrx/store';
 
 import { Position } from '../../shared/enums/position.enum';
 import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
@@ -8,9 +8,9 @@ export interface Tiers {
     loading: boolean;
 }
 
-export interface TiersState {
-    readonly tiers: Tiers
-}
+// export interface TiersState {
+//     readonly tiers: Tiers
+// }
 
 export const initialState: Tiers = {
     activeTab: Position.QB,

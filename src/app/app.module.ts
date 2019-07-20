@@ -25,7 +25,7 @@ import { TiersModule } from './tiers/tiers.module';
     RouterModule.forRoot([]),
     StateModule,
     TiersModule,
-    // StoreModule.forRoot({}),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],

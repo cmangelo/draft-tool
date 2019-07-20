@@ -1,5 +1,4 @@
 <div class="tiers" *ngIf="(currentGroupPlayers$ | async) as curr">
-  {{curr}}
-  <app-tier-card *ngFor="let tier of tiers" [players]="tier.players" [tier]="tier.tierNumber"
+  <app-tier-card *ngFor="let tier of curr" [players]="tier.players" [tier]="tier.tierNumber"
     [hideTierNumber]="position === positions.FLEX" [startingAtRank]="tier.startingAtRank"></app-tier-card>
 </div>
