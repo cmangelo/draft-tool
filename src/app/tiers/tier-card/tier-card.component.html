@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <th>Rank</th>
-        <th width="25%">Name</th>
+        <th width="22%">Name</th>
         <th>Team</th>
         <th>BYE</th>
         <th>Points</th>
@@ -16,13 +16,13 @@
     <tbody>
       <tr *ngFor="let player of players; let i = index" [ngClass]="{'taken': player.taken}">
         <td>{{startingAtRank + i}}</td>
-        <td width="25%">{{player.name}}</td>
+        <td width="22%">{{player.name}}</td>
         <td>{{player.team}}</td>
         <td>{{player.bye}}</td>
         <td>{{player.points}}</td>
         <td>{{player.risk}}</td>
         <td>{{player.adp}}</td>
-        <td width="10%"><button class="btn btn-primary" [disabled]="player.taken">Draft</button></td>
+        <td width="10%"><button class="btn btn-primary" [disabled]="player.drafted">Draft</button></td>
       </tr>
     </tbody>
   </table>

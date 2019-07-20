@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Player } from '../../shared/models/player.interface';
+import { PlayerModel } from '../../+state/entities/player/player.model';
 
 @Component({
   selector: 'app-tier-card',
@@ -8,7 +8,7 @@ import { Player } from '../../shared/models/player.interface';
   styleUrls: ['./tier-card.component.less']
 })
 export class TierCardComponent implements OnInit {
-  @Input() players: Array<Player>;
+  @Input() players: Array<PlayerModel>;
   @Input() tier: number;
   @Input() startingAtRank: number;
   @Input() hideTierNumber: boolean;

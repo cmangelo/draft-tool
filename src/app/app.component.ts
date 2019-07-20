@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+// import { Store } from '@ngrx/store';
+
+// import { State } from './+state';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'draft-kit';
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }

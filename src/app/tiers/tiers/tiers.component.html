@@ -1,5 +1,5 @@
 <div>
-  <ngb-tabset>
+  <ngb-tabset (tabChange)="updateTab($event)">
     <ngb-tab title="QB">
       <ng-template ngbTabContent>
         <app-position-tab [position]="positions.QB"></app-position-tab>
