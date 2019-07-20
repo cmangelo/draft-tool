@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
-import { TierModel } from 'src/app/+state/entities/tier/tier.model';
 
 import { GroupModel } from '../../+state/entities/group/group.model';
 import { GroupEntityType } from '../../+state/entities/group/group.reducer';
 import { PlayerEntityType } from '../../+state/entities/player/player.reducer';
+import { TierModel } from '../../+state/entities/tier/tier.model';
 import { TierEntityType } from '../../+state/entities/tier/tier.reducer';
 import { entitiesSelector } from '../../+state/reducers';
 import { Position } from '../../shared/enums/position.enum';

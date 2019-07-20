@@ -23,5 +23,3 @@ const groupReducer = createReducer(
 export function reducer(state: State | undefined, action: GroupActionsType) {
     return groupReducer(state, action);
 }
-
-export const getGroups = (state: State) => state.entities;

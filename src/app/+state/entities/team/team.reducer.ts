@@ -1,7 +1,8 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Team } from './team.model';
+
 import * as TeamActions from './team.actions';
+import { Team } from './team.model';
 
 export interface State extends EntityState<Team> {
   // additional entities state properties
@@ -40,9 +41,6 @@ const teamReducer = createReducer(
   ),
   on(TeamActions.deleteTeams,
     (state, action) => adapter.removeMany(action.ids, state)
-  ),
-  on(TeamActions.loadTeams,
-    (state, action) => adapter.addAll(action.teams, state)
   ),
   on(TeamActions.clearTeams,
     state => adapter.removeAll(state)

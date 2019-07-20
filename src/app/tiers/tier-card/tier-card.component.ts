@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { PlayerModel } from '../../+state/entities/player/player.model';
 
@@ -12,6 +12,7 @@ export class TierCardComponent implements OnInit {
   @Input() tier: number;
   @Input() startingAtRank: number;
   @Input() hideTierNumber: boolean;
+  @Output() draftPlayer = new EventEmitter<string>();
 
   constructor() { }
 

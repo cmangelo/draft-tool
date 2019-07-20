@@ -11,9 +11,15 @@ const GetPlayersForPosition = createAction(
     props<{ position: Position }>()
 );
 
+const DraftPlayer = createAction(
+    '[Tiers] Draft Player',
+    props<{ playerId: string }>()
+);
+
 export const TiersPageActions = {
     UpdateActiveTab,
-    GetPlayersForPosition
+    GetPlayersForPosition,
+    DraftPlayer
 }
 
 const ActionsUnion = union(TiersPageActions);

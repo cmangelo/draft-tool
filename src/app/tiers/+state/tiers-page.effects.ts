@@ -8,6 +8,7 @@ import { State } from 'src/app/+state/reducers';
 
 import { GroupActions } from '../../+state/entities/group/group.actions';
 import { TierActions } from '../../+state/entities/tier/tier.actions';
+import * as DraftActions from '../../+state/features/draft.actions';
 import { PlayersService } from '../../shared/services/players.service';
 import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
 import { getGroups } from './tiers-page.selectors';
@@ -17,12 +18,12 @@ import { getGroups } from './tiers-page.selectors';
 })
 export class TiersEffects {
 
-    constructor(private actions: Actions<TiersPageActionsType>,
+    constructor(private actions$: Actions<TiersPageActionsType>,
         private store$: Store<State>,
         private service: PlayersService) { }
 
     @Effect()
-    getPlayersForPosition$ = this.actions
+    getPlayersForPosition$ = this.actions$
         .pipe(
             ofType(TiersPageActions.GetPlayersForPosition.type),
             withLatestFrom(this.store$),
@@ -38,5 +39,15 @@ export class TiersEffects {
                         ])
                     )
             })
+        );
+
+    @Effect()
+    draftPlayer$ = this.actions$
+        .pipe(
+            ofType(TiersPageActions.DraftPlayer),
+            switchMap(({ playerId }) => [
+                PlayerActions.DraftPlayer({ playerId }),
+                DraftActions.PickMade()
+            ])//may need to change this to a switch map and dispatch more than one action like above
         );
 }

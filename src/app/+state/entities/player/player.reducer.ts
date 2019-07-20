@@ -26,11 +26,31 @@ const playerReducer = createReducer(
       }
     }
   ),
+  on(PlayerActions.DraftPlayer, (state, action) => {
+    return {
+      ...state,
+      entities: {
+        ...state.entities,
+        [action.playerId]: {
+          ...state.entities[action.playerId],
+          drafted: true
+        }
+      }
+    }
+  }),
+  on(PlayerActions.ResetDrafted, (state) => {
+    let reset = {};
+    for (let key of Object.keys(state.entities)) {
+      reset[key] = { ...state.entities[key], drafted: false };
+    }
+    return {
+      ...state,
+      entities: { ...reset }
+    }
+  }),
   on(PlayerActions.ClearPlayers, () => initialState)
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return playerReducer(state, action);
 }
-
-export const getPlayers = (state: State) => state.entities;

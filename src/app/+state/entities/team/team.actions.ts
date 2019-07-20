@@ -1,12 +1,7 @@
-import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+import { createAction, props } from '@ngrx/store';
 
 import { Team } from './team.model';
-
-export const loadTeams = createAction(
-  '[Team/API] Load Teams', 
-  props<{ teams: Team[] }>()
-);
 
 export const addTeam = createAction(
   '[Team/API] Add Team',

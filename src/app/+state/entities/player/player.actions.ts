@@ -7,12 +7,23 @@ export const AddPlayers = createAction(
   props<{ players: { [_id: string]: PlayerModel } }>()
 );
 
+export const DraftPlayer = createAction(
+  '[Tiers Effects] Draft Player',
+  props<{ playerId: string }>()
+);
+
+export const ResetDrafted = createAction(
+  '[Tiers] Reset Drafted'
+);
+
 export const ClearPlayers = createAction(
   '[Player/API] Clear Players'
 );
 
 export const PlayerActions = {
   AddPlayers,
+  DraftPlayer,
+  ResetDrafted,
   ClearPlayers
 }
 
