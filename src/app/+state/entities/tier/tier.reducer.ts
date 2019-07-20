@@ -22,6 +22,4 @@ export function reducer(state: State | undefined, action: TierActionsType) {
     return tierReducer(state, action);
 }
 
-// export const tierEntitySelector = createFeatureSelector<State>('tiers');
-
 export const getTiers = (state: State) => state.entities;

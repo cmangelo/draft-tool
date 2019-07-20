@@ -8,10 +8,6 @@ export interface Tiers {
     loading: boolean;
 }
 
-// export interface TiersState {
-//     readonly tiers: Tiers
-// }
-
 export const initialState: Tiers = {
     activeTab: Position.QB,
     loading: true,

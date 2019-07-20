@@ -4,7 +4,7 @@ import { Position } from 'src/app/shared/enums/position.enum';
 
 import { State } from '../../+state/reducers';
 import { TiersPageActions } from './tiers-page.actions';
-import { getPlayersForActiveGroup } from './tiers-page.selectors';
+import { getPopulatedTiers } from './tiers-page.selectors';
 
 // import { getPlayersForActiveGroup } from './tiers-page.selectors';
 
@@ -12,8 +12,7 @@ import { getPlayersForActiveGroup } from './tiers-page.selectors';
     providedIn: 'root'
 })
 export class TiersFacade {
-    currentGroupPlayers$ = this.store.pipe(select(getPlayersForActiveGroup));
-    // something = this.store.pipe(select<>)
+    currentGroupPlayers$ = this.store.pipe(select(getPopulatedTiers));
 
     constructor(private store: Store<State>) { }
 
@@ -26,7 +25,6 @@ export class TiersFacade {
     }
 
     getPlayersForAllPositions() {
-        // this.store.dispatch(TiersActions.GetPlayersForAllPositions());
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.QB }));
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.RB }));
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.WR }));

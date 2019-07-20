@@ -9,7 +9,7 @@ import { entitiesSelector } from '../../+state/reducers';
 import { Position } from '../../shared/enums/position.enum';
 import { tiersPageSelector } from './tiers-page.reducer';
 
-const getGroups = createSelector(entitiesSelector, state => state.groups.entities);
+export const getGroups = createSelector(entitiesSelector, state => state.groups.entities);
 
 const getTiers = createSelector(entitiesSelector, state => state.tiers.entities);
 
@@ -23,19 +23,27 @@ const getActiveGroup = createSelector(
 	(activeTab: Position, groups: GroupEntityType) => groups[activeTab]
 );
 
-export const getPlayersForActiveGroup = createSelector(
+export const getTiersForActiveGroup = createSelector(
 	getActiveGroup,
 	getTiers,
 	getPlayers,
 	(group: GroupModel, tiers: TierEntityType, players: PlayerEntityType) => {
 		if (!group || !tiers || !players) return;
-		let gt = group.tiers as Array<string>;
-		let groupTiers = gt.map(key => tiers[key]);
-		let tierPlayers = groupTiers.map((t: TierModel) => {
+		let groupTiers = group.tiers as Array<string>;
+		let populatedGroup = groupTiers.map(key => tiers[key]);
+		return populatedGroup;
+	}
+);
+
+export const getPopulatedTiers = createSelector(
+	getTiersForActiveGroup,
+	getPlayers,
+	(populatedGroup, players) => {
+		if (!populatedGroup || !players) return;
+		let populatedTiers = populatedGroup.map((t: TierModel) => {
 			let tp = t.players.map(key => players[key]);
 			return { ...t, players: tp }
 		});
-		console.log(tierPlayers)
-		return tierPlayers;
+		return populatedTiers;
 	}
 )

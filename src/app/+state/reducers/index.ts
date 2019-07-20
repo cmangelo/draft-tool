@@ -8,16 +8,8 @@ import * as fromTier from '../entities/tier/tier.reducer';
 export interface State {
 	players: fromPlayers.State,
 	tiers: fromTier.State,
-	groups: fromGroups.State,
-	// tiersPage: fromTiers.Tiers
+	groups: fromGroups.State
 }
-
-// export const reducers: ActionReducerMap<State> = {
-// 	players: fromPlayers.reducer,
-// 	tiers: fromTier.reducer,
-// 	groups: fromGroups.reducer,
-// 	tiersPage: fromTiers.reducer
-// }
 
 export function reducers(state: State | undefined, action: Action) {
 	return combineReducers({
@@ -30,8 +22,7 @@ export function reducers(state: State | undefined, action: Action) {
 export const initialState: State = {
 	players: { entities: {} },
 	tiers: { entities: {} },
-	groups: { entities: {} },
-	// tiersPage: fromTiers.initialState
+	groups: { entities: {} }
 }
 
 export const entitiesSelector = createFeatureSelector<State>('entities');

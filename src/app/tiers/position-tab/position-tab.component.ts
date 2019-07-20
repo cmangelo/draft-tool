@@ -19,13 +19,7 @@ export class PositionTabComponent implements OnInit {
   constructor(private playerService: PlayersService, private facade: TiersFacade) { }
 
   ngOnInit() {
-    // this.playerService.getPlayerByPosition(this.position).subscribe(data => {
-    //   this.tiers = data;
-    // });
-    // this.playerService.updatePlayer('5d2e9822d5477953c4fef11a', { owner: 'Cma', draftedRound: 3, draftedPick: 4 }).subscribe();
-    this.facade.getPlayersForPosition(this.position);
-    // this.currentGroupPlayers$.pipe(tap(res => console.log(res)));
-    // this.facade.getPlayersForAllPositions();
+    this.facade.getPlayersForAllPositions();
   }
 
 }

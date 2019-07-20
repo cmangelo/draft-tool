@@ -24,6 +24,4 @@ export function reducer(state: State | undefined, action: GroupActionsType) {
     return groupReducer(state, action);
 }
 
-// export const groupEntitySelector = createFeatureSelector<State>('groups');
-
 export const getGroups = (state: State) => state.entities;
