@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { DraftEffects } from '../draft/+state/draft.effects';
+import * as fromDraft from '../draft/+state/draft.reducer';
 import * as root from './reducers';
-import * as fromDraft from './features/draft.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { DraftEffects } from './features/draft.effects';
 
 @NgModule({
   declarations: [],

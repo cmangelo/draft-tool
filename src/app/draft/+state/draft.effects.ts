@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { EMPTY } from 'rxjs';
-import { concatMap, map, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 
+import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
 import { getOrderUp, getPick, getPicksPerRound, getRound, State } from './draft.reducer';
 
@@ -11,13 +11,17 @@ import { getOrderUp, getPick, getPicksPerRound, getRound, State } from './draft.
 @Injectable()
 export class DraftEffects {
 
-  constructor(private actions$: Actions, private store$: Store<State>) { }
+  constructor(private actions$: Actions, private store$: Store<State>, private service: DraftService) { }
 
-  loadDrafts$ = createEffect(() => this.actions$.pipe(
-    ofType(DraftActions.LoadDrafts),
-    /** An EMPTY observable only emits completion. Replace with your own observable API request */
-    concatMap(() => EMPTY)
-  ));
+  initDraft$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(DraftActions.InitDraft),
+      switchMap(() => this.service.initializeDraft()
+        .pipe(
+          map(draft => DraftActions.InitDraftSuccess({ draft })) // in here we may need to normalize the teams from the draft, and will need to save the tiers to the tiers state
+        )
+      )
+    ));
 
   pickMade$ = createEffect(() => this.actions$
     .pipe(

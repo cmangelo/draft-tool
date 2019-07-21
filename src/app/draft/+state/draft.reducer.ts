@@ -1,6 +1,7 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 import * as DraftActions from './draft.actions';
+import { getTeams } from './draft.selectors';
 
 export interface State {
   round: number;
@@ -41,12 +42,11 @@ export const getPick = createSelector(draftSelector, state => state.pick);
 export const getRound = createSelector(draftSelector, state => state.round);
 export const getPicksPerRound = createSelector(draftSelector, state => state.picksPerRound);
 export const getOrderUp = createSelector(draftSelector, state => state.orderUp);
-
-/*
-pick is made
-tiers effects catches action
-two actions dispatched
--players.playerdrafted (handled by players reducer)
--draft.playerdrafted (handled by draft reducer)
-
-*/
+export const getActiveTeam = createSelector(
+  getOrderUp,
+  getTeams,
+  (orderUp, teams) => {
+    if (!teams) return;
+    return Object.keys(teams).map(key => teams[key]).find(x => x.draftPosition === orderUp);
+  }
+)
