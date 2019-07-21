@@ -10,20 +10,35 @@ export interface State {
   entities: TeamEntityType;
 }
 
-
 export const initialState: State = {
   entities: {}
 };
 
 const teamReducer = createReducer(
   initialState,
-  // on(TeamActions.addTeam,
-  //   (state, action) => adapter.addOne(action.team, state)
-  // ),
-  on(TeamActions.AddPlayerToTeam, (state, action) => {
+  on(TeamActions.AddTeams, (state, action) => {
     return {
       ...state,
-
+      entities: {
+        ...state.entities,
+        ...action.teams
+      }
+    }
+  }),
+  on(TeamActions.AddPlayerToTeam, (state, action) => {
+    if (!state.entities[action.teamId].players)
+      state.entities[action.teamId].players = [];
+    return {
+      entities: {
+        ...state.entities,
+        [action.teamId]: {
+          ...state.entities[action.teamId],
+          players: [
+            ...state.entities[action.teamId].players,
+            action.playerId
+          ]
+        }
+      }
     }
   })
 );

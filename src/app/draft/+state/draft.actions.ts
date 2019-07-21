@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Draft } from '../models/draft.interface';
+import { DraftConfig } from '../models/draft.interface';
 
 export const LoadDrafts = createAction(
   '[Draft] Load Drafts'
@@ -12,7 +12,7 @@ export const InitDraft = createAction(
 
 export const InitDraftSuccess = createAction(
   '[Draft] Init Draft Success',
-  props<{ draft: Draft }>()
+  props<{ config: DraftConfig }>()
 );
 
 export const PickMade = createAction(

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
+import { mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { PlayerActions } from 'src/app/+state/entities/player/player.actions';
 import { State } from 'src/app/+state/reducers';
 import { getActiveTeam } from 'src/app/draft/+state/draft.reducer';
@@ -48,11 +48,13 @@ export class TiersEffects {
         .pipe(
             ofType(TiersPageActions.DraftPlayer),
             withLatestFrom(this.store$),
-            map(([playerId, state]) => { let active = getActiveTeam(state); console.log(active); return [{ playerId }, active] }),
-            switchMap(([{ playerId }, teamId]) => [
-                PlayerActions.DraftPlayer({ playerId }),
-                DraftActions.PickMade(),
-                TeamActions.AddPlayerToTeam({ playerId, teamId })
-            ])
+            switchMap(([{ playerId }, state]) => {
+                let teamId = getActiveTeam(state)._id;
+                return [
+                    PlayerActions.DraftPlayer({ playerId }),
+                    DraftActions.PickMade(),
+                    TeamActions.AddPlayerToTeam({ playerId, teamId }),
+                ]
+            })
         );
 }

@@ -8,7 +8,7 @@ import { DraftFacade } from '../+state/draft.facade';
   styleUrls: ['./draft.component.less']
 })
 export class DraftComponent implements OnInit {
-  // picks = new Number[12][15];
+  activeTeam$ = this.facade.activeTeam$;
 
   constructor(private facade: DraftFacade) { }
 

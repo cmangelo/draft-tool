@@ -1,5 +1,6 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
+import { DraftConfig } from '../models/draft.interface';
 import * as DraftActions from './draft.actions';
 import { getTeams } from './draft.selectors';
 
@@ -8,13 +9,17 @@ export interface State {
   pick: number;
   picksPerRound: number;
   orderUp: number;
+  config: DraftConfig | undefined;
+  teams: Array<String>;
 }
 
 export const initialState: State = {
   round: 1,
   pick: 1,
   picksPerRound: 12,
-  orderUp: 1
+  orderUp: 1,
+  config: undefined,
+  teams: []
 };
 
 const draftReducer = createReducer(
@@ -27,6 +32,13 @@ const draftReducer = createReducer(
       round: action.round,
       pick: action.pick,
       orderUp: action.orderUp
+    }
+  }),
+  on(DraftActions.InitDraftSuccess, (state, action) => {
+    return {
+      ...state,
+      config: action.config,
+      teams: action.config.teams as Array<string>
     }
   }),
   on(DraftActions.ResetDraft, () => initialState)

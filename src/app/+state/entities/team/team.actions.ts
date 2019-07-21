@@ -2,9 +2,9 @@ import { createAction, props } from '@ngrx/store';
 
 import { TeamModel } from './team.model';
 
-export const AddTeam = createAction(
-  '[Team/API] Add Team',
-  props<{ team: TeamModel }>()
+export const AddTeams = createAction(
+  '[Team/API] Add Teams',
+  props<{ teams: { [_id: string]: TeamModel } }>()
 );
 
 export const ClearTeams = createAction(

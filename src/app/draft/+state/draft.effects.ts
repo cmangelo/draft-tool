@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 
+import * as TeamActions from '../../+state/entities/team/team.actions';
 import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
 import { getOrderUp, getPick, getPicksPerRound, getRound, State } from './draft.reducer';
@@ -18,7 +19,12 @@ export class DraftEffects {
       ofType(DraftActions.InitDraft),
       switchMap(() => this.service.initializeDraft()
         .pipe(
-          map(draft => DraftActions.InitDraftSuccess({ draft })) // in here we may need to normalize the teams from the draft, and will need to save the tiers to the tiers state
+          switchMap(config => {
+            return [
+              TeamActions.AddTeams({ teams: config.normTeams }),
+              DraftActions.InitDraftSuccess({ config: config.config })
+            ]
+          })
         )
       )
     ));

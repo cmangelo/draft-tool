@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import * as DraftActions from './draft.actions';
-import { State } from './draft.reducer';
+import { getActiveTeam, State } from './draft.reducer';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DraftFacade {
+    activeTeam$ = this.store.pipe(select(getActiveTeam));
 
     constructor(private store: Store<State>) { }
 
