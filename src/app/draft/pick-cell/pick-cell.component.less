@@ -1,0 +1,39 @@
+.cell {
+  height: 58px;
+  width: 100px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  margin: 1px;
+  padding: 2px 5px;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+
+    .round-pick {
+      font-weight: bolder;
+      color: #7d7d7d;
+      opacity: .8;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+    margin-top: 5px;
+
+    .name {
+      line-height: 1;
+      width: 25%;
+    }
+
+    .bye {
+      font-size: 11px;
+      align-self: flex-end;
+    }
+  }
+}

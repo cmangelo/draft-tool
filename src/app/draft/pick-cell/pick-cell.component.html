@@ -1,5 +1,19 @@
-<span *ngIf="player; else none">
-  <span>{{player.name}}</span>
-</span>
+<div class="cell">
+  <ng-container *ngIf="player; else none">
+    <div class="top">
+      <span class="pos-team">{{positions[player.position]}} - {{player.team}}</span>
+      <span class="round-pick">{{round}}.{{pick}}</span>
+    </div>
+    <div class="bottom">
+      <span class="name">{{player.name}}</span>
+      <span class="bye">({{player.bye}})</span>
+    </div>
+  </ng-container>
+</div>
 
-<ng-template #none> none</ng-template>
+<ng-template #none>
+  <div class="top">
+    <span class="pos-team"></span>
+    <span class="round-pick">{{round}}.{{pick}}</span>
+  </div>
+</ng-template>

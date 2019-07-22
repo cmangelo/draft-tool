@@ -19,6 +19,7 @@ export class TiersComponent implements OnInit {
   ngOnInit() {
     this.facade.updateActiveTab(Position.QB);
     //todo find a way to stay on whatever tab we were on whenever we left the page when we come back
+    //also keep scroll position
   }
 
   updateTab(activeTab: any) {

@@ -15,15 +15,16 @@ export class DraftComponent implements OnInit {
   teams$ = this.facade.teams$;
   rounds: Array<any>;
   picks: Array<any>;
+  numTeams: number;
 
   constructor(private facade: DraftFacade) { }
 
   ngOnInit() {
     this.draftConfig$.subscribe(config => {
       if (config) {
-        console.log(config.numTeams, config.numRounds)
         this.picks = new Array(config.numTeams);
         this.rounds = new Array(config.numRounds);
+        this.numTeams = config.numTeams;
       }
     });
     this.teams$.subscribe(x => console.log(x))
