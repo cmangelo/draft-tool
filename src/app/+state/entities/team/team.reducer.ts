@@ -1,61 +1,52 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Team } from './team.model';
-import * as TeamActions from './team.actions';
 
-export interface State extends EntityState<Team> {
-  // additional entities state properties
+import * as TeamActions from './team.actions';
+import { TeamModel } from './team.model';
+
+export type TeamEntityType = { [key: number]: TeamModel };
+
+
+export interface State {
+  entities: TeamEntityType;
 }
 
-export const adapter: EntityAdapter<Team> = createEntityAdapter<Team>({
-  selectId: (team: Team) => team._id
-});
-
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
-});
+export const initialState: State = {
+  entities: {}
+};
 
 const teamReducer = createReducer(
   initialState,
-  on(TeamActions.addTeam,
-    (state, action) => adapter.addOne(action.team, state)
-  ),
-  on(TeamActions.upsertTeam,
-    (state, action) => adapter.upsertOne(action.team, state)
-  ),
-  on(TeamActions.addTeams,
-    (state, action) => adapter.addMany(action.teams, state)
-  ),
-  on(TeamActions.upsertTeams,
-    (state, action) => adapter.upsertMany(action.teams, state)
-  ),
-  on(TeamActions.updateTeam,
-    (state, action) => adapter.updateOne(action.team, state)
-  ),
-  on(TeamActions.updateTeams,
-    (state, action) => adapter.updateMany(action.teams, state)
-  ),
-  on(TeamActions.deleteTeam,
-    (state, action) => adapter.removeOne(action.id, state)
-  ),
-  on(TeamActions.deleteTeams,
-    (state, action) => adapter.removeMany(action.ids, state)
-  ),
-  on(TeamActions.loadTeams,
-    (state, action) => adapter.addAll(action.teams, state)
-  ),
-  on(TeamActions.clearTeams,
-    state => adapter.removeAll(state)
-  ),
+  on(TeamActions.AddTeams, (state, action) => {
+    return {
+      ...state,
+      entities: {
+        ...state.entities,
+        ...action.teams
+      }
+    }
+  }),
+  on(TeamActions.AddPlayerToTeam, (state, action) => {
+    if (!state.entities[action.teamId].players)
+      state.entities[action.teamId].players = [];
+    return {
+      entities: {
+        ...state.entities,
+        [action.teamId]: {
+          ...state.entities[action.teamId],
+          players: [
+            ...state.entities[action.teamId].players,
+            action.playerId
+          ],
+          playerRoundMap: {
+            ...state.entities[action.teamId].playerRoundMap,
+            [action.round]: action.playerId
+          }
+        }
+      }
+    }
+  })
 );
 
 export function reducer(state: State | undefined, action: Action) {
   return teamReducer(state, action);
 }
-
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = adapter.getSelectors();

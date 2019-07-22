@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { PlayerActions } from 'src/app/+state/entities/player/player.actions';
 import { Position } from 'src/app/shared/enums/position.enum';
 
 import { State } from '../../+state/reducers';
@@ -30,5 +31,13 @@ export class TiersFacade {
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.WR }));
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.TE }));
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position: Position.FLEX }));
+    }
+
+    draftPlayer(playerId: string) {
+        this.store.dispatch(TiersPageActions.DraftPlayer({ playerId }));
+    }
+
+    resetDrafted() {
+        this.store.dispatch(PlayerActions.ResetDrafted());
     }
 }

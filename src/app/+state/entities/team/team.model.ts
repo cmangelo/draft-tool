@@ -1,5 +1,9 @@
-export interface Team {
+import { PlayerModel } from '../player/player.model';
+
+export interface TeamModel {
   _id: string;
   owner: string;
-  draftOrder: number;
+  draftPosition: number;
+  players: Array<string> | Array<PlayerModel>;
+  playerRoundMap: { [id: number]: string };
 }

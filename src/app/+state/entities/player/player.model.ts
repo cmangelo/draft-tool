@@ -2,6 +2,7 @@ import { Position } from '../../../shared/enums/position.enum';
 
 export interface PlayerModel {
   _id: string;
+  position: Position;
   group: Position;
   name: string;
   team: string;

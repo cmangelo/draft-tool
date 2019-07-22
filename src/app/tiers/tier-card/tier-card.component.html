@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let player of players; let i = index" [ngClass]="{'taken': player.taken}">
+      <tr *ngFor="let player of players; let i = index" [ngClass]="{'drafted': player.drafted}">
         <td>{{startingAtRank + i}}</td>
         <td width="22%">{{player.name}}</td>
         <td>{{player.team}}</td>
@@ -22,7 +22,8 @@
         <td>{{player.points}}</td>
         <td>{{player.risk}}</td>
         <td>{{player.adp}}</td>
-        <td width="10%"><button class="btn btn-primary" [disabled]="player.drafted">Draft</button></td>
+        <td width="10%"><button class="btn btn-primary" [disabled]="player.drafted"
+            (click)="draftPlayer.emit(player._id)">Draft</button></td>
       </tr>
     </tbody>
   </table>
