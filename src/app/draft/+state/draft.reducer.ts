@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { DraftConfig } from '../models/draft.interface';
+import { DraftConfig } from '../models/draft-config.interface';
 import * as DraftActions from './draft.actions';
 
 export interface State {

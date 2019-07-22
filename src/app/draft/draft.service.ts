@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { TeamModel } from '../+state/entities/team/team.model';
 import { ApiHelperService } from '../shared/services/api-helper.service';
-import { DraftConfig } from './models/draft.interface';
+import { DraftConfig } from './models/draft-config.interface';
 
 @Injectable({
     providedIn: 'root'

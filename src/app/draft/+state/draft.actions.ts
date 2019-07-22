@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { DraftConfig } from '../models/draft.interface';
+import { DraftConfig } from '../models/draft-config.interface';
 
 export const LoadDrafts = createAction(
   '[Draft] Load Drafts'
