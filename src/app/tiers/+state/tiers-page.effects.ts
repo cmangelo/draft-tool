@@ -3,17 +3,16 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY } from 'rxjs';
 import { mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
-import { PlayerActions } from 'src/app/+state/entities/player/player.actions';
-import { State } from 'src/app/+state/reducers';
-import { getActiveTeam } from 'src/app/draft/+state/draft.reducer';
 
 import { GroupActions } from '../../+state/entities/group/group.actions';
+import { PlayerActions } from '../../+state/entities/player/player.actions';
 import * as TeamActions from '../../+state/entities/team/team.actions';
 import { TierActions } from '../../+state/entities/tier/tier.actions';
+import { getGroups, State } from '../../+state/reducers';
 import * as DraftActions from '../../draft/+state/draft.actions';
+import { getActiveTeam, getRound } from '../../draft/+state/draft.selectors';
 import { PlayersService } from '../../shared/services/players.service';
 import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
-import { getGroups } from './tiers-page.selectors';
 
 @Injectable({
     providedIn: 'root'
@@ -50,10 +49,11 @@ export class TiersEffects {
             withLatestFrom(this.store$),
             switchMap(([{ playerId }, state]) => {
                 let teamId = getActiveTeam(state)._id;
+                let round = getRound(state);
                 return [
                     PlayerActions.DraftPlayer({ playerId }),
                     DraftActions.PickMade(),
-                    TeamActions.AddPlayerToTeam({ playerId, teamId }),
+                    TeamActions.AddPlayerToTeam({ playerId, teamId, round }),
                 ]
             })
         );

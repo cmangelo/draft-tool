@@ -6,7 +6,8 @@ import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import * as TeamActions from '../../+state/entities/team/team.actions';
 import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
-import { getOrderUp, getPick, getPicksPerRound, getRound, State } from './draft.reducer';
+import { State } from './draft.reducer';
+import { getOrderUp, getPick, getPicksPerRound, getRound } from './draft.selectors';
 
 
 @Injectable()

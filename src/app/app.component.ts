@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
-// import { Store } from '@ngrx/store';
-
-// import { State } from './+state';
+import { DraftFacade } from './draft/+state/draft.facade';
+import { TiersFacade } from './tiers/+state/tiers-page.facade';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +11,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'draft-kit';
 
-  constructor() { }
+  constructor(private draftFacade: DraftFacade, private tiersFacade: TiersFacade) { }
 
   ngOnInit() {
+    this.draftFacade.initializeDraft();
+    this.tiersFacade.getPlayersForAllPositions();
   }
 
 }

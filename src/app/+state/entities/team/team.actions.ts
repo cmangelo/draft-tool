@@ -12,6 +12,6 @@ export const ClearTeams = createAction(
 );
 
 export const AddPlayerToTeam = createAction(
-  '[Tiers Page] Add Player',
-  props<{ playerId: string, teamId: string }>()
+  '[Tiers Page] Add Player To Team',
+  props<{ playerId: string, teamId: string, round: number }>()
 );

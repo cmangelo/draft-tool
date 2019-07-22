@@ -36,7 +36,11 @@ const teamReducer = createReducer(
           players: [
             ...state.entities[action.teamId].players,
             action.playerId
-          ]
+          ],
+          playerRoundMap: {
+            ...state.entities[action.teamId].playerRoundMap,
+            [action.round]: action.playerId
+          }
         }
       }
     }

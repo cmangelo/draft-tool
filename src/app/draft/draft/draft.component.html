@@ -1,5 +1,33 @@
-<!-- <div *ngFor="let x of picks">
-  <div *ngFor="let y of x" style="height: 30px; width: 40px; background: green">
+<button class="btn btn-primary" [routerLink]="'/tiers'">Tiers</button>
 
-  </div>
-</div> -->
+<!-- <ng-container *ngIf="(teams$ | async) as teams">
+  <ng-container *ngIf="teams.length !== 0">
+    <div *ngFor="let pick of picks; let i = index">
+      length != 0 {{teams.length}}
+      <ng-container *ngFor="let round of rounds; let j = index">
+        {{teams[i].players}}
+        <ng-container *ngIf="teams[i].playerRoundMap">
+          {{teams[i].players}}
+          <app-pick-cell [player]="teams[i].playerRoundMap[j]" *ngIf="teams[i].playerRoundMap[j]; else none">
+          </app-pick-cell>
+          <ng-template #none>
+            <app-pick-cell [player]="undefined"></app-pick-cell>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </div>
+
+  </ng-container>
+</ng-container> -->
+
+<ng-container *ngIf="(teams$ | async) as teams">
+  <ng-container *ngFor="let y of rounds; let j = index">
+
+    <div class="d-flex">
+      <div *ngFor="let x of picks; let i = index">
+        <app-pick-cell [player]="teams[i].playerRoundMap[j+1]"></app-pick-cell>
+        <!-- {{teams[i].playerRoundMap[j+1]?.name || 'name'}} -->
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

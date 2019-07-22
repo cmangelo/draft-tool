@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { DraftRoutingModule } from './draft-routing.module';
 import { DraftComponent } from './draft/draft.component';
+import { PickCellComponent } from './pick-cell/pick-cell.component';
 
 
 @NgModule({
-  declarations: [DraftComponent],
+  declarations: [DraftComponent, PickCellComponent],
   imports: [
     CommonModule,
     DraftRoutingModule

@@ -36,7 +36,9 @@ export class DraftService {
                     let teams = config.teams as Array<TeamModel>;
                     config.teams = teams.map(team => team._id);
                     let normTeams = teams.reduce((obj, item) => {
-                        obj[item._id] = item
+                        item.players = new Array(config.numRounds);
+                        item.playerRoundMap = {};
+                        obj[item._id] = item;
                         return obj
                     }, {});
                     return { config, normTeams };

@@ -1,4 +1,4 @@
-import { Action, combineReducers, createFeatureSelector } from '@ngrx/store';
+import { Action, combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromGroups from '../entities/group/group.reducer';
 import * as fromPlayers from '../entities/player/player.reducer';
@@ -29,3 +29,7 @@ export const initialState: State = {
 }
 
 export const entitiesSelector = createFeatureSelector<State>('entities');
+
+export const getPlayers = createSelector(entitiesSelector, state => state.players.entities);
+export const getGroups = createSelector(entitiesSelector, state => state.groups.entities);
+export const getTiers = createSelector(entitiesSelector, state => state.tiers.entities);

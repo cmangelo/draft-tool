@@ -20,7 +20,6 @@ export class PositionTabComponent implements OnInit {
   constructor(private playerService: PlayersService, private facade: TiersFacade) { }
 
   ngOnInit() {
-    this.facade.getPlayersForAllPositions();
   }
 
 }

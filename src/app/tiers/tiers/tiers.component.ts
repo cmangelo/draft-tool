@@ -17,11 +17,13 @@ export class TiersComponent implements OnInit {
   constructor(private facade: TiersFacade) { }
 
   ngOnInit() {
+    this.facade.updateActiveTab(Position.QB);
+    //todo find a way to stay on whatever tab we were on whenever we left the page when we come back
   }
 
   updateTab(activeTab: any) {
     const newTab = activeTab.nextId;
-    this.facade.updateActiveTab(<Position>parseInt(newTab[newTab.length - 1]));
+    this.facade.updateActiveTab(<Position>parseInt(newTab[newTab.length - 1]) % 5);
   }
 
   draftPlayer(playerId: string) {

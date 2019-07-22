@@ -5,4 +5,5 @@ export interface TeamModel {
   owner: string;
   draftPosition: number;
   players: Array<string> | Array<PlayerModel>;
+  playerRoundMap: { [id: number]: string };
 }

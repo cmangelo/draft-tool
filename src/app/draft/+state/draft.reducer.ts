@@ -1,8 +1,7 @@
-import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import { DraftConfig } from '../models/draft.interface';
 import * as DraftActions from './draft.actions';
-import { getTeams } from './draft.selectors';
 
 export interface State {
   round: number;
@@ -48,17 +47,3 @@ export function reducer(state: State | undefined, action: Action) {
   return draftReducer(state, action);
 }
 
-export const draftSelector = createFeatureSelector<State>('draft');
-
-export const getPick = createSelector(draftSelector, state => state.pick);
-export const getRound = createSelector(draftSelector, state => state.round);
-export const getPicksPerRound = createSelector(draftSelector, state => state.picksPerRound);
-export const getOrderUp = createSelector(draftSelector, state => state.orderUp);
-export const getActiveTeam = createSelector(
-  getOrderUp,
-  getTeams,
-  (orderUp, teams) => {
-    if (!teams) return;
-    return Object.keys(teams).map(key => teams[key]).find(x => x.draftPosition === orderUp);
-  }
-)
