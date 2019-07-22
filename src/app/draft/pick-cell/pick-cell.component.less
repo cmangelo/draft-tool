@@ -19,6 +19,7 @@
     }
   }
 
+
   .bottom {
     display: flex;
     justify-content: space-between;
@@ -29,11 +30,48 @@
     .name {
       line-height: 1;
       width: 25%;
+      display: flex;
+      flex-direction: column;
+
+      .last-name {
+        font-weight: 600;
+      }
     }
 
     .bye {
       font-size: 11px;
       align-self: flex-end;
+      line-height: 1;
+      margin-bottom: 1px;
+    }
+  }
+
+  &.QB {
+    background-color: #ff2b6d;
+  }
+
+  &.RB {
+    background-color: #00ceb8;
+  }
+
+  &.WR {
+    background-color: #58a7ff;
+  }
+
+  &.TE {
+    background-color: #ffae58;
+  }
+
+  &.QB,
+  &.RB,
+  &.WR,
+  &.TE {
+    color: #fff;
+
+    .top {
+      .round-pick {
+        color: #fff;
+      }
     }
   }
 }
