@@ -4,25 +4,25 @@
     <thead>
       <tr>
         <th>Rank</th>
-        <th width="22%">Name</th>
-        <th>Team</th>
-        <th>BYE</th>
+        <th width="35%">Name</th>
+        <!-- <th>Team</th> -->
+        <!-- <th>BYE</th> -->
         <th>Points</th>
-        <th>Risk</th>
+        <!-- <th>Risk</th> -->
         <th>ADP</th>
-        <th></th>
+        <th width="20%"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let player of players; let i = index" [ngClass]="{'drafted': player.drafted}">
         <td>{{startingAtRank + i}}</td>
-        <td width="22%">{{player.name}}</td>
-        <td>{{player.team}}</td>
-        <td>{{player.bye}}</td>
+        <td width="35%">{{player.name}}</td>
+        <!-- <td>{{player.team}}</td> -->
+        <!-- <td>{{player.bye}}</td> -->
         <td>{{player.points}}</td>
-        <td>{{player.risk}}</td>
+        <!-- <td>{{player.risk}}</td> -->
         <td>{{player.adp}}</td>
-        <td width="10%"><button class="btn btn-primary" [disabled]="player.drafted"
+        <td width="20%"><button class="btn btn-primary" [disabled]="player.drafted"
             (click)="draftPlayer.emit(player._id)">Draft</button></td>
       </tr>
     </tbody>

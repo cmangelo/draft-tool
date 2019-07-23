@@ -6,8 +6,8 @@ h3 {
 
 .tier {
   background-color: #fff;
-  padding: 10px 15px;
-  margin-bottom: 15px;
+  padding: 5px 0;
+  margin-bottom: 5px;
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -27,11 +27,15 @@ h3 {
         font-weight: bolder;
 
         &:first-of-type {
-          padding-right: 30px;
+          padding-right: 15px;
         }
 
         &:nth-of-type(2) {
           text-align: left;
+        }
+
+        &:last-of-type {
+          padding-right: 8px;
         }
       }
     }
@@ -52,9 +56,10 @@ h3 {
         td {
           text-align: right;
           height: 55px;
+          font-size: 14px;
 
           &:first-of-type {
-            padding-right: 30px;
+            padding-right: 15px;
           }
 
           &:nth-of-type(2) {
@@ -62,12 +67,12 @@ h3 {
           }
 
           &:last-of-type {
-            padding-left: 10px;
-            text-align: center;
+            padding-right: 8px;
+            // text-align: center;
           }
 
           .btn.btn-primary {
-            padding: 3px 10px;
+            padding: 3px 5px;
 
             &:disabled {
               background-color: #f1f1f1;

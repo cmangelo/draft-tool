@@ -1,4 +1,4 @@
-<div class="tiers" *ngIf="(currentGroupPlayers$ | async) as curr">
+<div class="tiers" *ngIf="(tiers$ | async) as curr">
   <app-tier-card *ngFor="let tier of curr" [players]="tier.players" [tier]="tier.tierNumber"
     [hideTierNumber]="position === positions.FLEX" [startingAtRank]="tier.startingAtRank"
     (draftPlayer)="draftPlayer.emit($event)"></app-tier-card>

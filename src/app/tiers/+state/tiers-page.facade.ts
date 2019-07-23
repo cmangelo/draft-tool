@@ -13,7 +13,12 @@ import { getPopulatedTiers } from './tiers-page.selectors';
     providedIn: 'root'
 })
 export class TiersFacade {
-    currentGroupPlayers$ = this.store.pipe(select(getPopulatedTiers));
+    currentGroupPlayers$ = this.store.pipe(select(getPopulatedTiers, { position: Position.RB }));
+    QBs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.QB }));
+    RBs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.RB }));
+    WRs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.WR }));
+    TEs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.TE }));
+    FLEX$ = this.store.pipe(select(getPopulatedTiers, { position: Position.FLEX }));
 
     constructor(private store: Store<State>) { }
 

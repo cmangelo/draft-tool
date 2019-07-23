@@ -17,8 +17,13 @@ const getActiveGroup = createSelector(
 	(activeTab: Position, groups: GroupEntityType) => groups[activeTab]
 );
 
+const getPositionGroup = createSelector(
+	getGroups,
+	(groups, props) => groups[props.position]
+);
+
 export const getTiersForActiveGroup = createSelector(
-	getActiveGroup,
+	getPositionGroup,
 	getTiers,
 	getPlayers,
 	(group: GroupModel, tiers: TierEntityType, players: PlayerEntityType) => {

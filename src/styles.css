@@ -4,3 +4,7 @@
 body {
   background-color: #fbfcfe !important;
 }
+
+div::-webkit-scrollbar {
+  display: none;
+}

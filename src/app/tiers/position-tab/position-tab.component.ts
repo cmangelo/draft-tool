@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TierModel } from 'src/app/+state/entities/tier/tier.model';
-import { PlayersService } from 'src/app/shared/services/players.service';
-import { TiersFacade } from 'src/app/tiers/+state/tiers-page.facade';
+import { Observable } from 'rxjs';
 
+import { TierModel } from '../../+state/entities/tier/tier.model';
 import { Position } from '../../shared/enums/position.enum';
+import { PlayersService } from '../../shared/services/players.service';
+import { TiersFacade } from '../../tiers/+state/tiers-page.facade';
 
 @Component({
   selector: 'app-position-tab',
@@ -12,10 +13,9 @@ import { Position } from '../../shared/enums/position.enum';
 })
 export class PositionTabComponent implements OnInit {
   @Input() position: Position;
+  @Input() tiers$: Observable<Array<TierModel>>;
   @Output() draftPlayer = new EventEmitter<string>();
-  tiers: Array<TierModel>;
   positions = Position;
-  currentGroupPlayers$ = this.facade.currentGroupPlayers$;
 
   constructor(private playerService: PlayersService, private facade: TiersFacade) { }
 

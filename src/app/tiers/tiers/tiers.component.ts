@@ -13,6 +13,11 @@ import { Position } from '../../shared/enums/position.enum';
 export class TiersComponent implements OnInit {
   positions = Position;
   players: Array<PlayerModel>;
+  QBs$ = this.facade.QBs$;
+  RBs$ = this.facade.RBs$;
+  WRs$ = this.facade.WRs$
+  TEs$ = this.facade.TEs$;
+  FLEX$ = this.facade.FLEX$;
 
   constructor(private facade: TiersFacade) { }
 
