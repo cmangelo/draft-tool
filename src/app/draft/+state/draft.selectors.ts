@@ -10,17 +10,20 @@ export const draftSelector = createFeatureSelector<State>('draft');
 
 export const getPick = createSelector(draftSelector, state => state.pick);
 export const getRound = createSelector(draftSelector, state => state.round);
+export const getOverall = createSelector(draftSelector, state => state.overall);
 export const getPicksPerRound = createSelector(draftSelector, state => state.picksPerRound);
 export const getOrderUp = createSelector(draftSelector, state => state.orderUp);
 export const getDraftConfig = createSelector(draftSelector, state => state.config);
+export const getPicks = createSelector(draftSelector, state => state.picks);
 export const getTeams = createSelector(entitiesSelector, state => state.teams.entities);
 
 export const getDraftPickState = createSelector(
     getPick,
     getRound,
     getOrderUp,
-    (pick, round, orderUp) => {
-        return { pick, round, orderUp };
+    getOverall,
+    (pick, round, orderUp, overall) => {
+        return { pick, round, orderUp, overall };
     }
 )
 
@@ -171,7 +174,7 @@ export const getPlayerCounts = createSelector(
             let wrs = players.filter(player => player && player.position === Position.WR).length;
             let tes = players.filter(player => player && player.position === Position.TE).length;
             let flex = players.filter(player => player && player.position === Position.FLEX).length;
-
+            //this doesnt work because the players array is actually still just ann aray of strings
             counts.QB += qbs > config.QBs ? config.QBs : qbs;
             counts.RB += rbs > config.RBs ? config.RBs : rbs;
             counts.WR += wrs > config.WRs ? config.WRs : wrs;
@@ -182,3 +185,12 @@ export const getPlayerCounts = createSelector(
         return counts;
     }
 );
+
+export const getLast3Picks = createSelector(
+    getPicks,
+    getOverall,
+    getPlayers,
+    (picks, overall, players) => {
+        Object.keys(picks).sort((a, b) => a > b ? 1 : -1)
+    }
+)

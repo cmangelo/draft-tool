@@ -14,7 +14,7 @@ export class DraftService {
     private draftConfig = {
         "numTeams": 12,
         "numRounds": 15,
-        "userPosition": 3,
+        "userPosition": 11,
         "playerConfig": {
             "QBs": 1,
             "RBs": 2,
