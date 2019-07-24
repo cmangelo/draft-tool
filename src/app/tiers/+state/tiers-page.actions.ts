@@ -11,6 +11,11 @@ const GetPlayersForPosition = createAction(
     props<{ position: Position }>()
 );
 
+const GetPlayersSuccess = createAction(
+    '[API] Get Players Success',
+    props<{ normalized: any, position: Position }>()
+);
+
 const DraftPlayer = createAction(
     '[Tiers] Draft Player',
     props<{ playerId: string }>()
@@ -19,6 +24,7 @@ const DraftPlayer = createAction(
 export const TiersPageActions = {
     UpdateActiveTab,
     GetPlayersForPosition,
+    GetPlayersSuccess,
     DraftPlayer
 }
 

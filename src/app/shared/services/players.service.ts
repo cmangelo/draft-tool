@@ -23,7 +23,7 @@ export class PlayersService {
         return this.api.patch('players/' + id, updates);
     }
 
-    private normalizeTiers(tiers: Array<TierModel>): NormalizedSchema<TierModel, any> {
+    private normalizeTiers(tiers: Array<TierModel>): NormalizedSchema<any, any> {
         const player = new schema.Entity('players', {}, { idAttribute: '_id' });
 
         const tier = new schema.Entity('tiers', {

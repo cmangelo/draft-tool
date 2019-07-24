@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import { GroupActions, GroupActionsType } from './group.actions';
 import { GroupModel } from './group.model';
+import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 export type GroupEntityType = { [_id: string]: GroupModel }
 
@@ -15,8 +16,14 @@ export const initialState: State = {
 
 const groupReducer = createReducer(
     initialState,
-    on(GroupActions.AddGroup, (state, action) => {
-        return { ...state, entities: { ...state.entities, [action.group.position]: action.group } }
+    on(TiersPageActions.GetPlayersSuccess, (state, action) => {
+        return {
+            ...state,
+            entities: {
+                ...state.entities,
+                [action.position]: action.normalized.result
+            }
+        }
     })
 );
 

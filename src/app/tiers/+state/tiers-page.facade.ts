@@ -7,8 +7,6 @@ import { State } from '../../+state/reducers';
 import { TiersPageActions } from './tiers-page.actions';
 import { getPopulatedTiers } from './tiers-page.selectors';
 
-// import { getPlayersForActiveGroup } from './tiers-page.selectors';
-
 @Injectable({
     providedIn: 'root'
 })

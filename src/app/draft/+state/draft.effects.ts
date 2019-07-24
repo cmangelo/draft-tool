@@ -22,6 +22,7 @@ export class DraftEffects {
         .pipe(
           switchMap(config => {
             return [
+              //todo: possibly combine this into one action
               TeamActions.AddTeams({ teams: config.normTeams }),
               DraftActions.InitDraftSuccess({ config: config.config })
             ]

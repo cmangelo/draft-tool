@@ -1,21 +1,17 @@
-import { createFeatureSelector, createReducer, on } from '@ngrx/store';
+import { createFeatureSelector, createReducer } from '@ngrx/store';
 
-import { Position } from '../../shared/enums/position.enum';
-import { TiersPageActions, TiersPageActionsType } from './tiers-page.actions';
+import { TiersPageActionsType } from './tiers-page.actions';
 
 export interface Tiers {
-    activeTab: Position;
     loading: boolean;
 }
 
 export const initialState: Tiers = {
-    activeTab: Position.QB,
     loading: true,
 }
 
 const tiersReducer = createReducer(
-    initialState,
-    on(TiersPageActions.UpdateActiveTab, (state, action) => { return { ...state, activeTab: action.tab } }),
+    initialState
 );
 
 export function reducer(state: Tiers | undefined, action: TiersPageActionsType) {
