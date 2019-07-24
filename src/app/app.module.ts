@@ -9,6 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StateModule } from './+state/state.module';
 import { AppComponent } from './app.component';
+import { DraftDashboardModule } from './draft-dashboard/draft-dashboard.module';
 import { DraftModule } from './draft/draft.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { TiersModule } from './tiers/tiers.module';
@@ -21,6 +22,7 @@ import { TiersModule } from './tiers/tiers.module';
     BrowserModule,
     HttpClientModule,
     DraftModule,
+    DraftDashboardModule,
     FileUploadModule,
     RouterModule.forRoot([]),
     StateModule,

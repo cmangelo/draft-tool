@@ -1,0 +1,12 @@
+<div class="main">
+  <div class="icons">
+    <i class="fa fa-list-ul" [routerLink]="'/tiers'"></i>
+    <i class="fa fa-th" [routerLink]="'/draft'"></i>
+  </div>
+  <!-- <button class="btn btn-danger" (click)="resetDrafted()">Reset</button> -->
+  <div class="current" *ngIf="(draftPickState$ | async) as draftPickState">
+    <span class="title">Round <span class="number">{{draftPickState.round}}</span></span>
+    <span class="title"> Pick <span class="number">{{draftPickState.pick}}</span></span>
+  </div>
+  <app-my-team [myTeam$]="myTeam$" [draftConfig$]="draftConfig$"></app-my-team>
+</div>

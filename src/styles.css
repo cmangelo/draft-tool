@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/bootstrap/bootstrap.min.css";
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 body {
   background-color: #fbfcfe !important;
 }
 
-div::-webkit-scrollbar {
+div::-webkit-scrollbar,
+div::-webkit-scrollbar-track {
   display: none;
 }

@@ -3,7 +3,14 @@ import { select, Store } from '@ngrx/store';
 
 import * as DraftActions from './draft.actions';
 import { State } from './draft.reducer';
-import { getActiveTeam, getDraftConfig, getDraftPickState, getPicksPerRound, getTeamsFillPlayers } from './draft.selectors';
+import {
+    getActiveTeam,
+    getDraftConfig,
+    getDraftPickState,
+    getMyPlayerPositionMap,
+    getPicksPerRound,
+    getTeamsFillPlayers,
+} from './draft.selectors';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +21,7 @@ export class DraftFacade {
     draftPickState$ = this.store.pipe(select(getDraftPickState));
     picksPerRound$ = this.store.pipe(select(getPicksPerRound));
     draftConfig$ = this.store.pipe(select(getDraftConfig));
+    myTeam$ = this.store.pipe(select(getMyPlayerPositionMap));
 
     constructor(private store: Store<State>) { }
 

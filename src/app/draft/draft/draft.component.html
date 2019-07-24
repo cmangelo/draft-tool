@@ -1,12 +1,14 @@
-<button class="btn btn-primary" [routerLink]="'/tiers'">Tiers</button>
-
-<ng-container *ngIf="(teams$ | async) as teams">
-  <ng-container *ngFor="let y of rounds; let j = index">
-    <div class="d-flex">
-      <div *ngFor="let x of picks; let i = index">
-        <app-pick-cell [player]="teams[i].playerRoundMap[j+1]" [round]="j+1" [pick]="i+1" [numTeams]="numTeams">
-        </app-pick-cell>
-      </div>
-    </div>
-  </ng-container>
-</ng-container>
+<div class="main">
+  <div class="inner">
+    <ng-container *ngIf="(teams$ | async) as teams">
+      <ng-container *ngFor="let y of rounds; let j = index">
+        <div class="d-flex">
+          <div *ngFor="let x of picks; let i = index">
+            <app-pick-cell [player]="teams[i].playerRoundMap[j+1]" [round]="j+1" [pick]="i+1" [numTeams]="numTeams">
+            </app-pick-cell>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

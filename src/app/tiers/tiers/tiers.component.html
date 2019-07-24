@@ -1,9 +1,4 @@
 <div class="main">
-  <div style="height: 23vh; border-bottom: 3px solid #f1f1f1;">
-    <button class="btn btn-primary" [routerLink]="'/draft'">Draft</button>
-    <button class="btn btn-danger" (click)="resetDrafted()">Reset</button>
-  </div>
-
   <div class="positions">
     <div class="position">
       <app-position-tab [tiers$]="QBs$" [position]="positions.QB" (draftPlayer)="draftPlayer($event)">

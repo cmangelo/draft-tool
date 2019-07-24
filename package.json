@@ -24,6 +24,7 @@
     "@ngrx/entity": "^8.1.0",
     "@ngrx/schematics": "^8.1.0",
     "@ngrx/store": "^8.1.0",
+    "font-awesome": "^4.7.0",
     "ngx-file-drop": "^8.0.3",
     "normalizr": "^3.4.0",
     "rxjs": "~6.4.0",

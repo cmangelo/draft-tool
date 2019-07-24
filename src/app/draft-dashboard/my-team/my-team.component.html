@@ -1,0 +1,63 @@
+<div class="main">
+
+  <ng-container *ngIf="(myTeam$ | async) as myTeam">
+    <ng-container *ngIf="(draftConfig$ | async) as draftConfig">
+
+      <!-- <div class="QBs" *ngFor="let q of qbs; let i = index">
+          <span>QB</span>
+          <span>{{myTeam.QB[i]?.name}}</span>
+        </div>
+        <div class="RBs" *ngFor="let r of rbs; let i = index">
+          <span>RB</span>
+          <span>{{myTeam.RB[i]?.name}}</span>
+        </div>
+        <div class="WRs" *ngFor="let w of wrs; let i = index">
+          <span>WR</span>
+          <span>{{myTeam.WR[i]?.name}}</span>
+        </div>
+        <div class="TEs" *ngFor="let t of tes; let i = index">
+          <span>TE</span>
+        <span>{{myTeam.TE[i]?.name}}</span>
+      </div> -->
+      <table>
+        <tbody>
+          <tr *ngFor="let q of qbs; let i = index">
+            <td width="15%">QB</td>
+            <td>{{myTeam.QB[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.QB[i]">({{myTeam.QB[i]?.round}})</span></td>
+          </tr>
+          <tr *ngFor="let r of rbs; let i = index">
+            <td width="15%">RB</td>
+            <td>{{myTeam.RB[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.RB[i]">({{myTeam.RB[i]?.round}})</span></td>
+          </tr>
+          <tr *ngFor="let w of wrs; let i = index">
+            <td width="15%">WR</td>
+            <td>{{myTeam.WR[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.WR[i]">({{myTeam.WR[i]?.round}})</span></td>
+          </tr>
+          <tr *ngFor="let t of tes; let i = index">
+            <td width="15%">TE</td>
+            <td>{{myTeam.TE[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.TE[i]">({{myTeam.TE[i]?.round}})</span></td>
+          </tr>
+          <tr class="FLEX" *ngFor="let f of flex; let i = index">
+            <td width="15%">FLEX</td>
+            <td>{{myTeam.FLEX[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.FLEX[i]">({{myTeam.FLEX[i]?.round}})</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <tbody>
+          <tr *ngFor="let b of bench; let i = index">
+            <td width="15%">BN</td>
+            <td>{{myTeam.BENCH[i]?.name}}</td>
+            <td width="10%"><span *ngIf="myTeam.BENCH[i]">({{myTeam.BENCH[i]?.round}})</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </ng-container>
+
+</div>

@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TeamModel } from 'src/app/+state/entities/team/team.model';
 import { entitiesSelector, getPlayers } from 'src/app/+state/reducers';
+import { Position } from 'src/app/shared/enums/position.enum';
 
 import { State } from './draft.reducer';
 
@@ -48,14 +49,7 @@ export const getTeamsFillPlayers = createSelector(
         if (!teams || !players) return;
 
         return teams.map(team => {
-            // if (!team.players) return team;
-            // let teamPlayers = [...team.players] as Array<string>;
-            // return {
-            //     ...team,
-            //     players: teamPlayers.map(playerId => players[playerId])
-            // }
             if (!team.playerRoundMap) return team;
-            // let players = Object.keys(team.playerRoundMap).map(round => team.playerRoundMap[round])
             let playerss = {};
             for (let round of Object.keys(team.playerRoundMap)) {
                 playerss[round] = players[team.playerRoundMap[round]];
@@ -65,5 +59,91 @@ export const getTeamsFillPlayers = createSelector(
                 playerRoundMap: playerss
             }
         });
+    }
+);
+
+export const getMyDraftPosition = createSelector(
+    getDraftConfig,
+    (config) => { if (!config) return; return config.userPosition }
+);
+
+export const getMyTeamFillPlayers = createSelector(
+    getMyDraftPosition,
+    getTeams,
+    getPlayers,
+    (position, teams, allPlayers) => {
+        if (!position || !teams || !allPlayers) return;
+
+        const team = Object.keys(teams).map(key => teams[key]).find(team => team.draftPosition === position);
+        if (!team) return;
+
+        let teamPlayers = {};
+        for (let round of Object.keys(team.playerRoundMap)) {
+            teamPlayers[round] = allPlayers[team.playerRoundMap[round]];
+        }
+        let x = {
+            ...team,
+            playerRoundMap: teamPlayers
+        };
+        return x;
+    }
+);
+
+export const getMyPlayerPositionMap = createSelector(
+    getMyTeamFillPlayers,
+    getDraftConfig,
+    (myTeam, config) => {
+
+        let positionMap = {
+            QB: [],
+            RB: [],
+            WR: [],
+            TE: [],
+            FLEX: [],
+            BENCH: [],
+            K: [],
+            DEF: []
+        };
+        console.log(myTeam, config)
+        if (!myTeam || !config) return positionMap;
+
+        Object.keys(myTeam.playerRoundMap).map(key => { return { ...myTeam.playerRoundMap[key], round: key } }).map(player => {
+            if (player.position === Position.QB) {
+                if (positionMap.QB.length < config.QBs) {
+                    positionMap.QB.push(player);
+                } else {
+                    positionMap.BENCH.push(player);
+                }
+            }
+            if (player.position === Position.RB) {
+                if (positionMap.RB.length < config.RBs) {
+                    positionMap.RB.push(player);
+                } else if (positionMap.FLEX.length < config.FLEX) {
+                    positionMap.FLEX.push(player);
+                } else {
+                    positionMap.BENCH.push(player);
+                }
+            }
+            if (player.position === Position.WR) {
+                if (positionMap.WR.length < config.WRs) {
+                    positionMap.WR.push(player);
+                } else if (positionMap.FLEX.length < config.FLEX) {
+                    positionMap.FLEX.push(player);
+                } else {
+                    positionMap.BENCH.push(player);
+                }
+            }
+            if (player.position === Position.TE) {
+                if (positionMap.TE.length < config.TEs) {
+                    positionMap.TE.push(player);
+                } else if (positionMap.FLEX.length < config.FLEX) {
+                    positionMap.FLEX.push(player);
+                } else {
+                    positionMap.BENCH.push(player);
+                }
+            }
+        });
+        console.log(positionMap)
+        return positionMap;
     }
 )
