@@ -1,7 +1,7 @@
 .cell {
   height: 58px;
   width: 100px;
-  background-color: #e0e0e0;
+  background-color: #ececec;
   border-radius: 3px;
   margin: 1px;
   padding: 2px 5px;
@@ -29,12 +29,16 @@
 
     .name {
       line-height: 1;
-      width: 25%;
+      width: 75px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
 
       .last-name {
         font-weight: 600;
+        padding-bottom: 3px;
       }
     }
 
@@ -42,7 +46,8 @@
       font-size: 11px;
       align-self: flex-end;
       line-height: 1;
-      margin-bottom: 1px;
+      margin-bottom: 4px;
+      background-color: inherit;
     }
   }
 
