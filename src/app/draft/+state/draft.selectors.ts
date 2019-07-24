@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { PlayerModel } from 'src/app/+state/entities/player/player.model';
 import { TeamModel } from 'src/app/+state/entities/team/team.model';
 import { entitiesSelector, getPlayers } from 'src/app/+state/reducers';
 import { Position } from 'src/app/shared/enums/position.enum';
@@ -104,7 +105,7 @@ export const getMyPlayerPositionMap = createSelector(
             K: [],
             DEF: []
         };
-        console.log(myTeam, config)
+
         if (!myTeam || !config) return positionMap;
 
         Object.keys(myTeam.playerRoundMap).map(key => { return { ...myTeam.playerRoundMap[key], round: key } }).map(player => {
@@ -143,7 +144,41 @@ export const getMyPlayerPositionMap = createSelector(
                 }
             }
         });
-        console.log(positionMap)
         return positionMap;
     }
-)
+);
+
+export const getPlayerCounts = createSelector(
+    getTeamsFillPlayers,
+    getDraftConfig,
+    (teams, config) => {
+        if (!teams || !config) return;
+
+        let counts = {
+            QB: 0,
+            RB: 0,
+            WR: 0,
+            TE: 0,
+            FLEX: 0
+        }
+
+        teams.forEach(team => {
+            let players = team.players as Array<PlayerModel>;
+            console.log(players)
+            if (players.length === 0) return;
+            let qbs = players.filter(player => player && player.position === Position.QB).length;
+            let rbs = players.filter(player => player && player.position === Position.RB).length;
+            let wrs = players.filter(player => player && player.position === Position.WR).length;
+            let tes = players.filter(player => player && player.position === Position.TE).length;
+            let flex = players.filter(player => player && player.position === Position.FLEX).length;
+
+            counts.QB += qbs > config.QBs ? config.QBs : qbs;
+            counts.RB += rbs > config.RBs ? config.RBs : rbs;
+            counts.WR += wrs > config.WRs ? config.WRs : wrs;
+            counts.TE += tes > config.TEs ? config.TEs : tes;
+            counts.FLEX += flex > config.FLEX ? config.FLEX : flex;
+        });
+        console.log(counts);
+        return counts;
+    }
+);

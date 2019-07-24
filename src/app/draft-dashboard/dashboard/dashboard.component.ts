@@ -11,10 +11,12 @@ export class DashboardComponent implements OnInit {
   myTeam$ = this.facade.myTeam$;
   draftConfig$ = this.facade.draftConfig$;
   draftPickState$ = this.facade.draftPickState$;
+  playerCounts$ = this.facade.playerCount$;
 
   constructor(private facade: DraftFacade) { }
 
   ngOnInit() {
+    this.playerCounts$.subscribe();
   }
 
 }
