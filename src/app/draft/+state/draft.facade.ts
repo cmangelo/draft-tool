@@ -7,6 +7,7 @@ import {
     getActiveTeam,
     getDraftConfig,
     getDraftPickState,
+    getLast3Picks,
     getMyPlayerPositionMap,
     getPicksPerRound,
     getPlayerCounts,
@@ -24,6 +25,7 @@ export class DraftFacade {
     draftConfig$ = this.store.pipe(select(getDraftConfig));
     myTeam$ = this.store.pipe(select(getMyPlayerPositionMap));
     playerCount$ = this.store.pipe(select(getPlayerCounts));
+    last3Picks$ = this.store.pipe(select(getLast3Picks));
 
     constructor(private store: Store<State>) { }
 

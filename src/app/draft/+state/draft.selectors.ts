@@ -167,7 +167,7 @@ export const getPlayerCounts = createSelector(
 
         teams.forEach(team => {
             let players = team.players as Array<PlayerModel>;
-            console.log(players)
+            // console.log(players)
             if (players.length === 0) return;
             let qbs = players.filter(player => player && player.position === Position.QB).length;
             let rbs = players.filter(player => player && player.position === Position.RB).length;
@@ -181,7 +181,7 @@ export const getPlayerCounts = createSelector(
             counts.TE += tes > config.TEs ? config.TEs : tes;
             counts.FLEX += flex > config.FLEX ? config.FLEX : flex;
         });
-        console.log(counts);
+        // console.log(counts);
         return counts;
     }
 );
@@ -191,6 +191,10 @@ export const getLast3Picks = createSelector(
     getOverall,
     getPlayers,
     (picks, overall, players) => {
-        Object.keys(picks).sort((a, b) => a > b ? 1 : -1)
+        return Object.keys(picks.overall)
+            .filter(pickNumber => parseInt(pickNumber) > overall - 4)
+            .sort((a, b) => a > b ? 1 : -1)
+            .map(pickNumber => picks.overall[pickNumber])
+            .map(playerId => players[playerId]);
     }
 )
