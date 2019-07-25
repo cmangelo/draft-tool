@@ -1,3 +1,4 @@
+<!-- 
 <h3 *ngIf="!hideTierNumber">Tier {{tier}}</h3>
 <div class="tier">
   <table>
@@ -5,10 +6,7 @@
       <tr>
         <th>Rank</th>
         <th width="35%">Name</th>
-        <!-- <th>Team</th> -->
-        <!-- <th>BYE</th> -->
         <th>Points</th>
-        <!-- <th>Risk</th> -->
         <th>ADP</th>
         <th width="20%"></th>
       </tr>
@@ -17,14 +15,45 @@
       <tr *ngFor="let player of players; let i = index" [ngClass]="{'drafted': player.drafted}">
         <td>{{startingAtRank + i}}</td>
         <td width="35%">{{player.name}}</td>
-        <!-- <td>{{player.team}}</td> -->
-        <!-- <td>{{player.bye}}</td> -->
         <td>{{player.points}}</td>
-        <!-- <td>{{player.risk}}</td> -->
         <td>{{player.adp}}</td>
         <td width="20%"><button class="btn btn-primary" [disabled]="player.drafted"
             (click)="draftPlayer.emit(player._id)">Draft</button></td>
       </tr>
+    </tbody>
+  </table>
+</div> -->
+<div class="tier">
+  <table>
+
+    <colgroup>
+      <col width="15%">
+      <col width="35%">
+      <col width="15%">
+      <col width="15%">
+      <col width="20%">
+    </colgroup>
+    <tbody *ngFor="let tier of tiers">
+      <ng-container>
+        <tr class="tier-num">
+          <td colspan="5">{{positions[position]}}{{tier.tierNumber}}</td>
+        </tr>
+        <!-- <tr class="col-headers">
+          <td>Rank</td>
+          <td width="35%">Name</td>
+          <td>ADP</td>
+          <td width="20%"></td>
+        </tr> -->
+        <tr *ngFor="let player of tier.players; let i = index"
+          [ngClass]="{'drafted': player.drafted, 'stripe': i%2 === 1}">
+          <td>{{tier.startingAtRank + i}}</td>
+          <td>{{player.name}}</td>
+          <td>{{player.points}}</td>
+          <td>{{player.adp}}</td>
+          <td><button class="btn btn-primary" [disabled]="player.drafted"
+              (click)="draftPlayer.emit(player._id)">Draft</button></td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

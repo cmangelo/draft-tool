@@ -6,51 +6,82 @@ h3 {
 
 .tier {
   background-color: #fff;
-  padding: 5px 0;
+  // padding: 5px 0;
   margin-bottom: 5px;
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
-
   table {
     width: 100%;
     table-layout: fixed;
 
-    thead {
-      font-size: .8em;
-      color: #747474;
+    // thead {
+    // font-size: .8em;
+    // color: #747474;
 
-      th {
-        text-align: right;
-        font-weight: bolder;
+    // tr
 
-        &:first-of-type {
-          padding-right: 15px;
-        }
-
-        &:nth-of-type(2) {
-          text-align: left;
-        }
-
-        &:last-of-type {
-          padding-right: 8px;
-        }
-      }
-    }
+    // }
 
     tbody {
       tr {
         font-weight: 350;
-        border-bottom: 1px solid #e0e0e0;
+        // border-bottom: 1px solid #e0e0e0;
 
         &.drafted {
           text-decoration: line-through;
         }
 
         &:last-of-type {
-          border-bottom: none;
+          // border-bottom: none;
+        }
+
+        &.stripe {
+          // background-color: #f8f8f8;
+        }
+
+        &.col-headers {
+          font-size: .8em;
+          color: #747474;
+          // height: 22px !important;
+          padding: 0;
+
+          td {
+            text-align: right;
+            font-weight: bolder;
+            height: 22px;
+
+            &:first-of-type {
+              padding-right: 15px;
+            }
+
+            &:nth-of-type(2) {
+              text-align: left;
+            }
+
+            &:last-of-type {
+              padding-right: 8px;
+            }
+          }
+        }
+
+        &.tier-num {
+
+          td {
+            background-color: #f8f8f8;
+            text-align: left;
+            padding-left: 25px;
+            font-size: 1.4em;
+            font-weight: 350;
+            position: sticky;
+            top: 0;
+            // font-weight: lighter;
+            // border-bottom: 1px solid #e0e0e0;
+            height: 75%;
+            color: #909090;
+          }
         }
 
         td {
