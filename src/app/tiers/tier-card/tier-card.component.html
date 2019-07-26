@@ -7,9 +7,9 @@
       <col width="15%">
       <col width="20%">
     </colgroup>
-    <tbody *ngFor="let tier of tiers">
+    <tbody *ngFor="let tier of tiers | search: (query$ | async)">
       <ng-container>
-        <tr class="tier-num">
+        <tr class="tier-num" [hidden]="tier.players.length === 0">
           <td colspan="5">{{positions[position]}}{{tier.tierNumber}}</td>
         </tr>
         <!-- <tr class="col-headers">
@@ -18,8 +18,7 @@
           <td>ADP</td>
           <td width="20%"></td>
         </tr> -->
-        <tr *ngFor="let player of tier.players | search: (query$ | async); let i = index"
-          [ngClass]="{'drafted': player.drafted}">
+        <tr *ngFor="let player of tier.players ; let i = index" [ngClass]="{'drafted': player.drafted}">
           <td>{{tier.startingAtRank + i}}</td>
           <td>{{player.name}}</td>
           <td>{{player.points}}</td>
