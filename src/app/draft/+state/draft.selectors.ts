@@ -15,6 +15,7 @@ export const getPicksPerRound = createSelector(draftSelector, state => state.pic
 export const getOrderUp = createSelector(draftSelector, state => state.orderUp);
 export const getDraftConfig = createSelector(draftSelector, state => state.config);
 export const getPicks = createSelector(draftSelector, state => state.picks);
+export const getQuery = createSelector(draftSelector, state => state.query);
 export const getTeams = createSelector(entitiesSelector, state => state.teams.entities);
 
 export const getDraftPickState = createSelector(

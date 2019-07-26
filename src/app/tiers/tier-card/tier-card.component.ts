@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TierModel } from 'src/app/+state/entities/tier/tier.model';
 
 import { PlayerModel } from '../../+state/entities/player/player.model';
@@ -14,9 +15,10 @@ export class TierCardComponent implements OnInit {
   @Input() tier: number;
   @Input() startingAtRank: number;
   @Input() hideTierNumber: boolean;
-  @Output() draftPlayer = new EventEmitter<string>();
   @Input() tiers: Array<TierModel>;
   @Input() position: Position;
+  @Input() query$: Observable<string>;
+  @Output() draftPlayer = new EventEmitter<string>();
   positions = Position;
 
   constructor() { }

@@ -15,6 +15,7 @@ export interface State {
   teams: Array<String>;
   picks: { overall: { [key: number]: string }, rounds: { [round: number]: { [pick: number]: string } } }
   counts: PlayerCounts;
+  query: string; //this should be moved into the dashboard store once we have that
 }
 
 export const initialState: State = {
@@ -32,7 +33,8 @@ export const initialState: State = {
     WR: 0,
     TE: 0,
     FLEX: 0
-  }
+  },
+  query: ''
 };
 
 const draftReducer = createReducer(
@@ -65,6 +67,12 @@ const draftReducer = createReducer(
           [state.overall]: action.playerId
         }
       }
+    }
+  }),
+  on(DraftActions.QueryUpdate, (state, action) => {
+    return {
+      ...state,
+      query: action.query
     }
   }),
   on(DraftActions.ResetDraft, () => initialState)

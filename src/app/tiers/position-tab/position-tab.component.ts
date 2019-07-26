@@ -14,6 +14,7 @@ import { TiersFacade } from '../../tiers/+state/tiers-page.facade';
 export class PositionTabComponent implements OnInit {
   @Input() position: Position;
   @Input() tiers$: Observable<Array<TierModel>>;
+  @Input() query$: Observable<string>;
   @Output() draftPlayer = new EventEmitter<string>();
   positions = Position;
 

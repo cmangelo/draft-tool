@@ -1,19 +1,8 @@
 <div class="main">
   <div class="positions">
-    <div class="position">
-      <app-position-tab [tiers$]="QBs$" [position]="positions.QB" (draftPlayer)="draftPlayer($event)">
-      </app-position-tab>
-    </div>
-    <div class="position">
-      <app-position-tab [tiers$]="RBs$" [position]="positions.RB" (draftPlayer)="draftPlayer($event)">
-      </app-position-tab>
-    </div>
-    <div class="position">
-      <app-position-tab [tiers$]="WRs$" [position]="positions.WR" (draftPlayer)="draftPlayer($event)">
-      </app-position-tab>
-    </div>
-    <div class="position">
-      <app-position-tab [tiers$]="TEs$" [position]="positions.TE" (draftPlayer)="draftPlayer($event)">
+    <div class="position" *ngFor="let position of positionsArr">
+      <app-position-tab [tiers$]="position.tiers" [position]="position.position" (draftPlayer)="draftPlayer($event)"
+        [query$]="query$">
       </app-position-tab>
     </div>
   </div>

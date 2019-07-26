@@ -9,6 +9,7 @@
     <span class="title">Round <span class="number">{{draftPickState.round}}</span></span>
     <span class="title"> Pick <span class="number">{{draftPickState.pick}}</span></span>
     <span class="title"> Overall <span class="number">{{draftPickState.overall}}</span></span>
+    <div><input type="text" [(ngModel)]="searchText" (ngModelChange)="searchTextUpdate($event)"></div>
   </div>
   <app-my-team [myTeam$]="myTeam$" [draftConfig$]="draftConfig$"></app-my-team>
 </div>

@@ -1,31 +1,5 @@
-<!-- 
-<h3 *ngIf="!hideTierNumber">Tier {{tier}}</h3>
 <div class="tier">
   <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th width="35%">Name</th>
-        <th>Points</th>
-        <th>ADP</th>
-        <th width="20%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let player of players; let i = index" [ngClass]="{'drafted': player.drafted}">
-        <td>{{startingAtRank + i}}</td>
-        <td width="35%">{{player.name}}</td>
-        <td>{{player.points}}</td>
-        <td>{{player.adp}}</td>
-        <td width="20%"><button class="btn btn-primary" [disabled]="player.drafted"
-            (click)="draftPlayer.emit(player._id)">Draft</button></td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-<div class="tier">
-  <table>
-
     <colgroup>
       <col width="15%">
       <col width="35%">
@@ -44,8 +18,8 @@
           <td>ADP</td>
           <td width="20%"></td>
         </tr> -->
-        <tr *ngFor="let player of tier.players; let i = index"
-          [ngClass]="{'drafted': player.drafted, 'stripe': i%2 === 1}">
+        <tr *ngFor="let player of tier.players | search: (query$ | async); let i = index"
+          [ngClass]="{'drafted': player.drafted}">
           <td>{{tier.startingAtRank + i}}</td>
           <td>{{player.name}}</td>
           <td>{{player.points}}</td>

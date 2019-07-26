@@ -27,3 +27,8 @@ export const UpdateDraft = createAction(
 export const ResetDraft = createAction(
   '[Draft] Reset Draft'
 );
+
+export const QueryUpdate = createAction(
+  '[Draft Dashboard] Search Text Update',
+  props<{ query: string }>()
+)
