@@ -1,15 +1,31 @@
 <div class="main">
-  <div class="icons">
-    <i class="fa fa-list" [routerLink]="'/tiers'"></i>
-    <i class="fa fa-th" [routerLink]="'/draft'"></i>
-    <i class="fa fa-upload" [routerLink]="'/file-upload'"></i>
+  <div class="section">
+    <div class="icons">
+      <div>
+        <i class="fa fa-list" [routerLink]="'/tiers'"></i>
+        <span>&nbsp;Rankings</span>
+      </div>
+      <div>
+        <i class="fa fa-th" [routerLink]="'/draft'"></i>
+        <span>&nbsp;Draft Board</span>
+      </div>
+      <div>
+        <i class="fa fa-upload" [routerLink]="'/file-upload'"></i>
+        <span>&nbsp;File Upload</span>
+      </div>
+    </div>
   </div>
-  <!-- <button class="btn btn-danger" (click)="resetDrafted()">Reset</button> -->
-  <div class="current" *ngIf="(draftPickState$ | async) as draftPickState">
-    <span class="title">Round <span class="number">{{draftPickState.round}}</span></span>
-    <span class="title"> Pick <span class="number">{{draftPickState.pick}}</span></span>
-    <span class="title"> Overall <span class="number">{{draftPickState.overall}}</span></span>
-    <div><input type="text" [(ngModel)]="searchText" (ngModelChange)="searchTextUpdate($event)"></div>
+
+  <div class="section">
+    <div class="current" *ngIf="(draftPickState$ | async) as draftPickState">
+      <span class="title">Round <span class="number">{{draftPickState.round}}</span></span>
+      <span class="title"> Pick <span class="number">{{draftPickState.pick}}</span></span>
+      <span class="title"> Overall <span class="number">{{draftPickState.overall}}</span></span>
+      <div><input type="text" [(ngModel)]="searchText" (ngModelChange)="searchTextUpdate($event)"></div>
+    </div>
   </div>
-  <app-my-team [myTeam$]="myTeam$" [draftConfig$]="draftConfig$"></app-my-team>
+
+  <div class="section">
+    <app-my-team [myTeam$]="myTeam$" [draftConfig$]="draftConfig$"></app-my-team>
+  </div>
 </div>

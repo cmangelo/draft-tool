@@ -1,47 +1,56 @@
 .main {
-  // height: 100%;
-  // border-bottom: 3px solid #f1f1f1;
-  // display: flex;
-  // justify-content: space-between;
-  /* border-bottom: 3px solid #f1f1f1; */
   height: 100%;
   margin: 5px 10px 0 10px;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  background: white;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
-  .icons {
-    padding: 0 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    color: #00ceff;
-    border-right: 1px solid #f4f4f4;
+  .section {
+    background: white;
+    border-radius: 3px;
+    height: 100%;
+    margin: 5px 10px 0 10px;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    flex-grow: 1;
 
-    i {
-      font-size: 2em;
-      cursor: pointer;
-      padding: 10px 0;
-      transition: transform 150ms;
+    .icons {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      // color: #00ceff;
+      align-items: flex-start;
+      border-right: 1px solid #f4f4f4;
 
-      &:hover {
-        transform: translateY(-3px);
+      >div {
+        display: flex;
+        align-items: center;
+
+        i {
+          font-size: 1.6em;
+          cursor: pointer;
+          padding: 10px 0;
+          transition: transform 150ms;
+
+          &:hover {
+            transform: translateY(-3px);
+          }
+        }
       }
+
     }
-  }
 
-  .current {
-    .title {
-      font-size: 34px;
+    .current {
+      .title {
+        font-size: 34px;
 
-      .number {
-        font-weight: lighter;
+        .number {
+          font-weight: lighter;
+        }
       }
     }
   }
