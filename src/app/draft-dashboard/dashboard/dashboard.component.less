@@ -1,20 +1,17 @@
 .main {
   height: 100%;
-  margin: 5px 10px 0 10px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: stretch;
+  display: grid;
+  grid-template-columns: 200px auto auto auto;
+  grid-column-gap: 2vh;
 
   .section {
     background: white;
     border-radius: 3px;
     height: 100%;
-    margin: 5px 10px 0 10px;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    flex-grow: 1;
 
     .icons {
       height: 100%;
@@ -24,6 +21,7 @@
       justify-content: space-evenly;
       // color: #00ceff;
       align-items: flex-start;
+      padding: 0px 35px;
       border-right: 1px solid #f4f4f4;
 
       >div {
@@ -34,6 +32,7 @@
           font-size: 1.6em;
           cursor: pointer;
           padding: 10px 0;
+          padding-right: 10px;
           transition: transform 150ms;
 
           &:hover {

@@ -1,9 +1,3 @@
-<div class="main">
-  <div class="positions">
-    <div class="position" *ngFor="let position of positionsArr">
-      <app-position-tab [tiers$]="position.tiers" [position]="position.position" (draftPlayer)="draftPlayer($event)"
-        [query$]="query$">
-      </app-position-tab>
-    </div>
-  </div>
-</div>
+<app-position-tab *ngFor="let position of positionsArr" [tiers$]="position.tiers" [position]="position.position"
+  (draftPlayer)="draftPlayer($event)" [query$]="query$">
+</app-position-tab>

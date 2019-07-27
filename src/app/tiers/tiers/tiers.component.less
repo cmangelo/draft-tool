@@ -1,17 +1,5 @@
-.main {
-  // padding-top: 25px;
-
-  .positions {
-    display: flex;
-
-    .position {
-      margin: 0 5px;
-      max-height: 70vh;
-      // overflow: overlay;
-    }
-
-    app-position-tab {
-      // overflow: scroll;
-    }
-  }
+:host {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2vh;
 }
