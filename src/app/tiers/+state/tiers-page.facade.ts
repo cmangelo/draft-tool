@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { PlayerActions } from 'src/app/+state/entities/player/player.actions';
+import { getQuery } from 'src/app/draft/+state/draft.selectors';
 import { Position } from 'src/app/shared/enums/position.enum';
 
 import { State } from '../../+state/reducers';
 import { TiersPageActions } from './tiers-page.actions';
 import { getPopulatedTiers } from './tiers-page.selectors';
 
-// import { getPlayersForActiveGroup } from './tiers-page.selectors';
-
 @Injectable({
     providedIn: 'root'
 })
 export class TiersFacade {
-    currentGroupPlayers$ = this.store.pipe(select(getPopulatedTiers));
+    currentGroupPlayers$ = this.store.pipe(select(getPopulatedTiers, { position: Position.RB }));
+    QBs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.QB }));
+    RBs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.RB }));
+    WRs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.WR }));
+    TEs$ = this.store.pipe(select(getPopulatedTiers, { position: Position.TE }));
+    FLEX$ = this.store.pipe(select(getPopulatedTiers, { position: Position.FLEX }));
+    query$ = this.store.pipe(select(getQuery));
 
     constructor(private store: Store<State>) { }
 

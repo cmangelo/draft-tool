@@ -4,6 +4,7 @@ import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { SharedModule } from '../shared/shared.module';
 import { TiersEffects } from './+state/tiers-page.effects';
 import * as tierState from './+state/tiers-page.reducer';
 import { PositionTabComponent } from './position-tab/position-tab.component';
@@ -17,6 +18,7 @@ import { TiersComponent } from './tiers/tiers.component';
     CommonModule,
     TiersRoutingModule,
     NgbTabsetModule,
+    SharedModule,
     EffectsModule.forFeature([TiersEffects]),
     StoreModule.forFeature('tiers-page', tierState.reducer)
   ],

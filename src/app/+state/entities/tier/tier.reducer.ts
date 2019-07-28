@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { TierActions, TierActionsType } from './tier.actions';
+import { TierActionsType } from './tier.actions';
 import { TierModel } from './tier.model';
+import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 export type TierEntityType = { [key: number]: TierModel };
 
@@ -15,7 +16,15 @@ export const initialState: State = {
 
 const tierReducer = createReducer(
     initialState,
-    on(TierActions.AddTier, (state, action) => { return { ...state, entities: { ...state.entities, ...action.tiers } } })
+    on(TiersPageActions.GetPlayersSuccess, (state, action) => {
+        return {
+            ...state,
+            entities: {
+                ...state.entities,
+                ...action.normalized.entities.tiers
+            }
+        }
+    })
 );
 
 export function reducer(state: State | undefined, action: TierActionsType) {

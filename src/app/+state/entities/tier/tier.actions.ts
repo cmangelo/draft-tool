@@ -4,7 +4,7 @@ import { TierModel } from './tier.model';
 
 const AddTier = createAction(
     '[Tiers/API] Add Tier',
-    props<{ tiers: { [_id: string]: TierModel }, ids: Array<string> }>()
+    props<{ tiers: { [_id: string]: TierModel } }>()
 );
 
 export const TierActions = {

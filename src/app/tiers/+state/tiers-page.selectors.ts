@@ -1,24 +1,18 @@
 import { createSelector } from '@ngrx/store';
 
 import { GroupModel } from '../../+state/entities/group/group.model';
-import { GroupEntityType } from '../../+state/entities/group/group.reducer';
 import { PlayerEntityType } from '../../+state/entities/player/player.reducer';
 import { TierModel } from '../../+state/entities/tier/tier.model';
 import { TierEntityType } from '../../+state/entities/tier/tier.reducer';
 import { getGroups, getPlayers, getTiers } from '../../+state/reducers';
-import { Position } from '../../shared/enums/position.enum';
-import { tiersPageSelector } from './tiers-page.reducer';
 
-export const getActiveTab = createSelector(tiersPageSelector, state => state.activeTab);
-
-const getActiveGroup = createSelector(
-	getActiveTab,
+const getPositionGroup = createSelector(
 	getGroups,
-	(activeTab: Position, groups: GroupEntityType) => groups[activeTab]
+	(groups, props) => groups[props.position]
 );
 
 export const getTiersForActiveGroup = createSelector(
-	getActiveGroup,
+	getPositionGroup,
 	getTiers,
 	getPlayers,
 	(group: GroupModel, tiers: TierEntityType, players: PlayerEntityType) => {
