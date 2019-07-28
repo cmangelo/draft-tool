@@ -193,8 +193,8 @@ export const getLast3Picks = createSelector(
     getPlayers,
     (picks, overall, players) => {
         return Object.keys(picks.overall)
-            .filter(pickNumber => parseInt(pickNumber) > overall - 4)
-            .sort((a, b) => a > b ? 1 : -1)
+            .filter(pickNumber => parseInt(pickNumber) > overall - 5)
+            .sort((a, b) => a < b ? 1 : -1)
             .map(pickNumber => picks.overall[pickNumber])
             .map(playerId => players[playerId]);
     }

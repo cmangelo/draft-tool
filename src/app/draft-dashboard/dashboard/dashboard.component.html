@@ -1,31 +1,47 @@
 <div class="main">
   <div class="section">
     <div class="icons">
-      <div>
-        <i class="fa fa-list" [routerLink]="'/tiers'"></i>
+      <div [routerLink]="'/tiers'" routerLinkActive="active-link">
+        <i class="fa fa-list"></i>
         <span>Rankings</span>
       </div>
-      <div>
-        <i class="fa fa-th" [routerLink]="'/draft'"></i>
+      <div [routerLink]="'/draft'" routerLinkActive="active-link">
+        <i class="fa fa-th"></i>
         <span>Draft Board</span>
       </div>
-      <div>
-        <i class="fa fa-upload" [routerLink]="'/file-upload'"></i>
+      <div [routerLink]="'/file-upload'" routerLinkActive="active-link">
+        <i class="fa fa-upload"></i>
         <span>File Upload</span>
       </div>
     </div>
   </div>
 
-  <div class="section">
+  <div class="section special">
     <div class="current" *ngIf="(draftPickState$ | async) as draftPickState">
-      <span class="title">Round <span class="number">{{draftPickState.round}}</span></span>
-      <span class="title"> Pick <span class="number">{{draftPickState.pick}}</span></span>
-      <span class="title"> Overall <span class="number">{{draftPickState.overall}}</span></span>
-      <div><input type="text" [(ngModel)]="searchText" (ngModelChange)="searchTextUpdate($event)"></div>
+      <div class="round-pick">
+        <span class="title">Pick <span class="number">{{draftPickState.round}}.<span
+              *ngIf="draftPickState.pick < 10">0</span>{{draftPickState.pick}}</span></span>
+        <span class="title overall"> Overall <span class="number">{{draftPickState.overall}}</span></span>
+      </div>
+      <div class="recent">
+        <span class="recent-title">Recent Picks</span>
+        <ng-container *ngIf="(last3Picks$ | async) as players; else noPicks">
+          <div class="player" *ngFor="let player of players; let i = index">
+            <span class="number">{{draftPickState.overall - i - 1}}</span><span>{{player.name}}</span>
+          </div>
+        </ng-container>
+        <ng-template #noPicks>
+          <div>No Picks</div>
+        </ng-template>
+      </div>
+    </div>
+    <div><input type="text" [(ngModel)]="searchText" (ngModelChange)="searchTextUpdate($event)" placeholder="Search...">
     </div>
   </div>
 
   <div class="section">
     <app-my-team [myTeam$]="myTeam$" [draftConfig$]="draftConfig$"></app-my-team>
   </div>
+
+  <div class="section"></div>
 </div>
