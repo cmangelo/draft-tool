@@ -55,13 +55,13 @@ export const getTeamsFillPlayers = createSelector(
 
         return teams.map(team => {
             if (!team.playerRoundMap) return team;
-            let playerss = {};
+            let map = {};
             for (let round of Object.keys(team.playerRoundMap)) {
-                playerss[round] = players[team.playerRoundMap[round]];
+                map[round] = players[team.playerRoundMap[round]];
             }
             return {
                 ...team,
-                playerRoundMap: playerss
+                playerRoundMap: map
             }
         });
     }

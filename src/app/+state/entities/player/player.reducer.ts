@@ -1,8 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { Position } from 'src/app/shared/enums/position.enum';
+import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 import * as PlayerActions from './player.actions';
 import { PlayerModel } from './player.model';
-import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 export type PlayerEntityType = { [_id: string]: PlayerModel };
 
@@ -11,7 +12,10 @@ export interface State {
 }
 
 export const initialState: State = {
-  entities: {}
+  entities: {
+    '-1': <PlayerModel>{ name: 'Defense', bye: 0, team: 'N/A', position: Position.DEF },
+    '-2': <PlayerModel>{ name: 'Kicker', bye: 0, team: 'N/A', position: Position.K }
+  }
 }
 
 const playerReducer = createReducer(

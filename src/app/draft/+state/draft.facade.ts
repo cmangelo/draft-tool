@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 import * as DraftActions from './draft.actions';
 import { State } from './draft.reducer';
@@ -35,5 +36,13 @@ export class DraftFacade {
 
     updateQuery(query: string) {
         this.store.dispatch(DraftActions.QueryUpdate({ query }));
+    }
+
+    draftDefense() {
+        this.store.dispatch(TiersPageActions.DraftPlayer({ playerId: '-1' }));
+    }
+
+    draftKicker() {
+        this.store.dispatch(TiersPageActions.DraftPlayer({ playerId: '-2' }));
     }
 }

@@ -26,4 +26,11 @@ export class DashboardComponent implements OnInit {
     this.facade.updateQuery(query);
   }
 
+  draftKicker() {
+    this.facade.draftKicker();
+  }
+
+  draftDefense() {
+    this.facade.draftDefense();
+  }
 }

@@ -3,5 +3,7 @@ export enum Position {
     RB,
     WR,
     TE,
-    FLEX
+    FLEX,
+    DEF,
+    K
 }
