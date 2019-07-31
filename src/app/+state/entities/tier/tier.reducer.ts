@@ -1,9 +1,9 @@
-import { createReducer, on } from '@ngrx/store';
-
-import { TierActionsType } from './tier.actions';
-import { TierModel } from './tier.model';
+import { Action, createReducer, on } from '@ngrx/store';
 import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
+import { TierModel } from './tier.model';
+
+// import { TierActionsType } from './tier.actions';
 export type TierEntityType = { [key: number]: TierModel };
 
 export interface State {
@@ -27,6 +27,6 @@ const tierReducer = createReducer(
     })
 );
 
-export function reducer(state: State | undefined, action: TierActionsType) {
+export function reducer(state: State | undefined, action: Action) {
     return tierReducer(state, action);
 }

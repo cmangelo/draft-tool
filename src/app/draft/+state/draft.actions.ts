@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
+import { TeamEntityType } from '../../+state/entities/team/team.reducer';
 import { DraftConfig } from '../models/draft-config.interface';
 
 export const LoadDrafts = createAction(
@@ -12,7 +13,7 @@ export const InitDraft = createAction(
 
 export const InitDraftSuccess = createAction(
   '[Draft] Init Draft Success',
-  props<{ config: DraftConfig }>()
+  props<{ config: DraftConfig, teams: TeamEntityType }>()
 );
 
 export const PickMade = createAction(
