@@ -1,10 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
+import * as DraftActions from '../../../draft/+state/draft.actions';
 import * as TeamActions from './team.actions';
 import { TeamModel } from './team.model';
 
-export type TeamEntityType = { [key: number]: TeamModel };
-
+export type TeamEntityType = { [_id: string]: TeamModel };
 
 export interface State {
   entities: TeamEntityType;
@@ -16,7 +16,7 @@ export const initialState: State = {
 
 const teamReducer = createReducer(
   initialState,
-  on(TeamActions.AddTeams, (state, action) => {
+  on(DraftActions.InitDraftSuccess, (state, action) => {
     return {
       ...state,
       entities: {

@@ -22,10 +22,6 @@ export class TiersFacade {
 
     constructor(private store: Store<State>) { }
 
-    updateActiveTab(tab: Position) {
-        this.store.dispatch(TiersPageActions.UpdateActiveTab({ tab }));
-    }
-
     getPlayersForPosition(position: Position) {
         this.store.dispatch(TiersPageActions.GetPlayersForPosition({ position }));
     }

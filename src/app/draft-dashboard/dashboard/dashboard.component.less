@@ -18,10 +18,6 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      // justify-content: space-evenly;
-      // color: #00ceff;
-      // align-items: flex-start;
-      // padding: 0px 35px;
 
       >div {
         display: flex;
@@ -58,10 +54,6 @@
           padding: 10px 0;
           padding-right: 10px;
           transition: transform 150ms;
-
-          // &:hover {
-          // transform: translateY(-3px);
-          // }
         }
       }
 
@@ -90,6 +82,8 @@
         .player {
           border-bottom: .9px solid #e0e0e0;
           padding: 1px 0;
+          white-space: nowrap;
+          overflow-x: hidden;
 
           &:last-of-type {
             border-bottom: none;
@@ -147,6 +141,18 @@
 
       &:focus {
         border-color: focus-border;
+      }
+    }
+
+    &.last {
+      .kicker {
+        background-color: #bd66ff;
+        color: #fff;
+      }
+
+      .defense {
+        background-color: #022047;
+        color: #fff;
       }
     }
   }

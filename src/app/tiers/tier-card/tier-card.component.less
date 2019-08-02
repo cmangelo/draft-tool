@@ -17,35 +17,17 @@ h3 {
     width: 100%;
     table-layout: fixed;
 
-    // thead {
-    // font-size: .8em;
-    // color: #747474;
-
-    // tr
-
-    // }
-
     tbody {
       tr {
         font-weight: 350;
-        // border-bottom: 1px solid #e0e0e0;
 
         &.drafted {
           text-decoration: line-through;
         }
 
-        &:last-of-type {
-          // border-bottom: none;
-        }
-
-        &.stripe {
-          // background-color: #f8f8f8;
-        }
-
         &.col-headers {
           font-size: .8em;
           color: #747474;
-          // height: 22px !important;
           padding: 0;
 
           td {
@@ -77,8 +59,6 @@ h3 {
             font-weight: 350;
             position: sticky;
             top: 0;
-            // font-weight: lighter;
-            // border-bottom: 1px solid #e0e0e0;
             height: 75%;
             color: #909090;
           }
@@ -99,7 +79,7 @@ h3 {
 
           &:last-of-type {
             padding-right: 8px;
-            // text-align: center;
+            z-index: 1;
           }
 
           .btn.btn-primary {

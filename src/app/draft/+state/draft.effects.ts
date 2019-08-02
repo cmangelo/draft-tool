@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 
-import * as TeamActions from '../../+state/entities/team/team.actions';
 import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
 import { State } from './draft.reducer';
@@ -20,13 +19,7 @@ export class DraftEffects {
       ofType(DraftActions.InitDraft),
       switchMap(() => this.service.initializeDraft()
         .pipe(
-          switchMap(config => {
-            return [
-              //todo: possibly combine this into one action
-              TeamActions.AddTeams({ teams: config.normTeams }),
-              DraftActions.InitDraftSuccess({ config: config.config })
-            ]
-          })
+          map(config => DraftActions.InitDraftSuccess({ config: config.config, teams: config.normTeams }))
         )
       )
     ));
@@ -49,5 +42,4 @@ export class DraftEffects {
         return DraftActions.UpdateDraft({ pick, round, orderUp });
       })
     ));
-
 }
