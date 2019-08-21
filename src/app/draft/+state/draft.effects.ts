@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
+import { StorageService } from '../../shared/services/storage.service';
 import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
 import { State } from './draft.reducer';
@@ -16,14 +17,25 @@ export class DraftEffects {
   constructor(private actions$: Actions,
     private store$: Store<State>,
     private service: DraftService,
-    private router: Router) { }
+    private router: Router,
+    private storage: StorageService) { }
 
   initDraft$ = createEffect(() => this.actions$
     .pipe(
       ofType(DraftActions.InitDraft),
       switchMap(({ config }) => this.service.initDraft(config)
         .pipe(
-          map(config => DraftActions.InitDraftSuccess({ config: config.config, teams: config.normTeams }))
+          map(config => DraftActions.InitDraftSuccess({ config: config.config, teams: config.normTeams, draftId: config._id }))
+        )
+      )
+    ));
+
+  getDraft$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(DraftActions.GetDraft),
+      switchMap(() => this.service.getDraft()
+        .pipe(
+          map(config => DraftActions.InitDraftSuccess({ config: config.config, teams: config.normTeams, draftId: config._id }))
         )
       )
     ));
@@ -31,7 +43,8 @@ export class DraftEffects {
   initDraftSuccess$ = createEffect(() => this.actions$
     .pipe(
       ofType(DraftActions.InitDraftSuccess),
-      tap(() => this.router.navigateByUrl('tiers'))
+      tap(() => this.router.navigateByUrl('tiers')),
+      tap(({ config }) => this.storage.save('draftId', config._id))
     ),
     { dispatch: false }
   );

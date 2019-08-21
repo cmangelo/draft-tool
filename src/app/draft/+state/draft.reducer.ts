@@ -78,6 +78,12 @@ const draftReducer = createReducer(
       query: action.query
     }
   }),
+  on(DraftActions.UpdateDraftInitialized, (state, action) => {
+    return {
+      ...state,
+      draftInitialized: action.initialized
+    }
+  }),
   on(DraftActions.ResetDraft, () => initialState)
 );
 

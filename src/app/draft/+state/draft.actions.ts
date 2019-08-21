@@ -13,9 +13,13 @@ export const InitDraft = createAction(
   props<{ config: DraftConfigRequest }>()
 );
 
+export const GetDraft = createAction(
+  '[Draft] Get Draft'
+);
+
 export const InitDraftSuccess = createAction(
   '[Draft] Init Draft Success',
-  props<{ config: DraftConfig, teams: TeamEntityType }>()
+  props<{ config: DraftConfig, teams: TeamEntityType, draftId: string }>()
 );
 
 export const PickMade = createAction(
@@ -34,4 +38,9 @@ export const ResetDraft = createAction(
 export const QueryUpdate = createAction(
   '[Draft Dashboard] Search Text Update',
   props<{ query: string }>()
-); 
+);
+
+export const UpdateDraftInitialized = createAction(
+  '[Draft] Update Draft Initialized',
+  props<{ initialized: boolean }>()
+);

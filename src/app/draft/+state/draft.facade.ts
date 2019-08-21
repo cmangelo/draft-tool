@@ -37,8 +37,16 @@ export class DraftFacade {
         this.store.dispatch(DraftActions.InitDraft({ config }));
     }
 
+    getDraft() {
+        this.store.dispatch(DraftActions.GetDraft());
+    }
+
     updateQuery(query: string) {
         this.store.dispatch(DraftActions.QueryUpdate({ query }));
+    }
+
+    updateDraftInitialized(initialized: boolean) {
+        this.store.dispatch(DraftActions.UpdateDraftInitialized({ initialized }));
     }
 
     draftDefense() {

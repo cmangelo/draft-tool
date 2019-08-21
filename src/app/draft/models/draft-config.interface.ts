@@ -1,6 +1,7 @@
 import { TeamModel } from 'src/app/+state/entities/team/team.model';
 
 export interface DraftConfig {
+    _id: string;
     numTeams: number;
     numRounds: number;
     userPosition: number;
