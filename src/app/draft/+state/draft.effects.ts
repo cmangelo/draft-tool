@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, switchMap, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 import { DraftService } from '../draft.service';
 import * as DraftActions from './draft.actions';
@@ -12,17 +13,28 @@ import { getOrderUp, getPick, getPicksPerRound, getRound } from './draft.selecto
 @Injectable()
 export class DraftEffects {
 
-  constructor(private actions$: Actions, private store$: Store<State>, private service: DraftService) { }
+  constructor(private actions$: Actions,
+    private store$: Store<State>,
+    private service: DraftService,
+    private router: Router) { }
 
   initDraft$ = createEffect(() => this.actions$
     .pipe(
       ofType(DraftActions.InitDraft),
-      switchMap(() => this.service.initializeDraft()
+      switchMap(({ config }) => this.service.initDraft(config)
         .pipe(
           map(config => DraftActions.InitDraftSuccess({ config: config.config, teams: config.normTeams }))
         )
       )
     ));
+
+  initDraftSuccess$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(DraftActions.InitDraftSuccess),
+      tap(() => this.router.navigateByUrl('tiers'))
+    ),
+    { dispatch: false }
+  );
 
   pickMade$ = createEffect(() => this.actions$
     .pipe(

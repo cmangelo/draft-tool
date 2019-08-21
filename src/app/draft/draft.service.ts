@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { TeamModel } from '../+state/entities/team/team.model';
+import { DraftConfigRequest } from '../draft-setup/models/draft-config.interface';
 import { ApiHelperService } from '../shared/services/api-helper.service';
 import { DraftConfig } from './models/draft-config.interface';
 
@@ -11,26 +12,10 @@ import { DraftConfig } from './models/draft-config.interface';
 })
 export class DraftService {
 
-    private draftConfig = {
-        "numTeams": 12,
-        "numRounds": 15,
-        "userPosition": 11,
-        "playerConfig": {
-            "QBs": 1,
-            "RBs": 2,
-            "WRs": 2,
-            "TEs": 1,
-            "FLEX": 1,
-            "BENCH": 6,
-            "K": 1,
-            "DEF": 1
-        }
-    }
-
     constructor(private api: ApiHelperService) { }
 
-    initializeDraft(): Observable<any> {
-        return this.api.post<DraftConfig>('draft', this.draftConfig)
+    initDraft(draftConfig: DraftConfigRequest): Observable<any> {
+        return this.api.post<DraftConfig>('draft', draftConfig)
             .pipe(
                 map(config => {
                     let teams = config.teams as Array<TeamModel>;

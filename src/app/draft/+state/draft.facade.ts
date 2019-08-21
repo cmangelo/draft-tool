@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { DraftConfigRequest } from 'src/app/draft-setup/models/draft-config.interface';
 import { TiersPageActions } from 'src/app/tiers/+state/tiers-page.actions';
 
 import * as DraftActions from './draft.actions';
@@ -8,6 +9,7 @@ import {
     getActiveTeam,
     getDraftConfig,
     getDraftPickState,
+    getInitialized,
     getLast3Picks,
     getMyPlayerPositionMap,
     getPicksPerRound,
@@ -27,11 +29,12 @@ export class DraftFacade {
     myTeam$ = this.store.pipe(select(getMyPlayerPositionMap));
     playerCount$ = this.store.pipe(select(getPlayerCounts));
     last3Picks$ = this.store.pipe(select(getLast3Picks));
+    initialized$ = this.store.pipe(select(getInitialized));
 
     constructor(private store: Store<State>) { }
 
-    initializeDraft() {
-        this.store.dispatch(DraftActions.InitDraft());
+    initializeDraft(config: DraftConfigRequest) {
+        this.store.dispatch(DraftActions.InitDraft({ config }));
     }
 
     updateQuery(query: string) {

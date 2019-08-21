@@ -1,0 +1,52 @@
+<div class="form-container">
+  <form (ngSubmit)="submit()">
+    <span class="heading">General</span>
+    <label>
+      My Position
+      <input type="number" name="myPosition" id="" [ngModel]="myPosition">
+    </label>
+    <label class="group-end">
+      Teams
+      <input type="number" name="teams" id="" [ngModel]="teams">
+    </label>
+
+    <span class="heading">Positions</span>
+    <label>
+      QBs
+      <input type="number" name="QBs" id="" [(ngModel)]="QBs">
+    </label>
+    <label>
+      RBs
+      <input type="number" name="RBs" id="" [(ngModel)]="RBs">
+    </label>
+    <label>
+      WRs
+      <input type="number" name="WRs" id="" [(ngModel)]="WRs">
+    </label>
+    <label>
+      TEs
+      <input type="number" name="TEs" id="" [(ngModel)]="TEs">
+    </label>
+    <label>
+      FLEX
+      <input type="number" name="FLEX" id="" [(ngModel)]="FLEX">
+    </label>
+    <label>
+      DEF
+      <input type="number" name="DEF" id="" [(ngModel)]="DEF">
+    </label>
+    <label>
+      K
+      <input type="number" name="K" id="" [(ngModel)]="K">
+    </label>
+    <label class="group-end">
+      Bench
+      <input type="number" name="BENCH" id="" [(ngModel)]="BENCH">
+    </label>
+    <label class="totals group-end">
+      Total Roster Spots
+      <span>{{QBs + RBs + WRs + TEs + FLEX + DEF + K + BENCH}}</span>
+    </label>
+    <button class="btn btn-primary" type="submit">Start Draft</button>
+  </form>
+</div>

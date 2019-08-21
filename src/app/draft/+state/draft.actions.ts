@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { DraftConfigRequest } from 'src/app/draft-setup/models/draft-config.interface';
 
 import { TeamEntityType } from '../../+state/entities/team/team.reducer';
 import { DraftConfig } from '../models/draft-config.interface';
@@ -8,7 +9,8 @@ export const LoadDrafts = createAction(
 );
 
 export const InitDraft = createAction(
-  '[Draft] Init Draft'
+  '[Draft] Init Draft',
+  props<{ config: DraftConfigRequest }>()
 );
 
 export const InitDraftSuccess = createAction(
@@ -32,4 +34,4 @@ export const ResetDraft = createAction(
 export const QueryUpdate = createAction(
   '[Draft Dashboard] Search Text Update',
   props<{ query: string }>()
-)
+); 

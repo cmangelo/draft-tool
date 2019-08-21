@@ -1,5 +1,5 @@
 <div class="main">
-  <div class="dashboard">
+  <div class="dashboard" *ngIf="initialized$ | async">
     <app-dashboard></app-dashboard>
   </div>
   <div class="content">

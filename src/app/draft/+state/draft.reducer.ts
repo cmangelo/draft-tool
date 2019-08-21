@@ -16,6 +16,7 @@ export interface State {
   picks: { overall: { [key: number]: string }, rounds: { [round: number]: { [pick: number]: string } } }
   counts: PlayerCounts;
   query: string; //this should be moved into the dashboard store once we have that
+  draftInitialized: boolean;
 }
 
 export const initialState: State = {
@@ -34,7 +35,8 @@ export const initialState: State = {
     TE: 0,
     FLEX: 0
   },
-  query: ''
+  query: '',
+  draftInitialized: false
 };
 
 const draftReducer = createReducer(
@@ -54,7 +56,8 @@ const draftReducer = createReducer(
     return {
       ...state,
       config: action.config,
-      teams: action.config.teams as Array<string>
+      teams: action.config.teams as Array<string>,
+      draftInitialized: true
     }
   }),
   on(TiersPageActions.DraftPlayer, (state, action) => {
